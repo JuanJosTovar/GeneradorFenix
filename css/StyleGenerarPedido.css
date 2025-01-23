@@ -1,0 +1,60 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 5px;
+}
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(88, 182, 34);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.cell2 {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(10, 124, 231);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.cell3  {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(189, 111, 22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.cell4 {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(161, 24, 24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.cell:hover {
+    background-color: #bdb8b8;
+}
+.selected {
+    background-color: #c9c614;
+    color: white;
+}

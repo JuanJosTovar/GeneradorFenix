@@ -13,6 +13,7 @@ body, html {
     align-items: center; /* Centra verticalmente */
 }
 
+
 .principal {
     text-align: center; /* Centra el texto dentro de la sección */
     color: white; /* Texto blanco para visibilidad */
@@ -42,3 +43,5 @@ a {
 a:hover {
     color: rgb(255, 165, 0); /* Cambia el color al pasar el mouse */
 }
+
+
