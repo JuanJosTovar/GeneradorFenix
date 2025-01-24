@@ -1,20 +1,78 @@
 body{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    height: 100%;
     align-items: center;
-    margin-top: 25%;
+    background-color: #2e2e2e;
+    align-content: center;
+    justify-content: space-around;
+
+}
+.container-buscador {
+    display: flex;
+    justify-content: center;
+    width: 25rem;
 }
 
+.titulo{
+    padding: 0%;
+    margin: 0%;
+    text-decoration: double;
+    color: #bdb8b8;
+}
+#search{
+    padding:2%;
+    background-color: #9b9797;
+    border-radius: 10rem;
+    width: 70%;
+}
+
+.Mapa{
+    background-color: #474747;
+    height: 40rem;
+    width: 98vb;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   margin-bottom: 5rem;
+   margin-top: 2rem;
+}
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(5, 50px);
-    gap: 5px;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(23, 8px);
+    grid-template-rows: repeat(16, 8px);
+    gap: 28px;
 }
+    
+.Mapa2{
+    background-color: #474747;
+    height: 12rem;
+    width: 98vb;
+    display: flex;
+    justify-content: center;
+
+}
+.grid2{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(23, 8px);
+    grid-template-rows: repeat(4, 8px);
+    gap: 28px;
+}
+
 .cell {
-    width: 50px;
-    height: 50px;
-    background-color: rgb(88, 182, 34);
+    width: 30px;
+    height: 30px;
+    background-color: rgb(168, 126, 35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,9 +80,9 @@ body{
     transition: background-color 0.3s;
 }
 .cell2 {
-    width: 50px;
-    height: 50px;
-    background-color: rgb(10, 124, 231);
+    width: 30px;
+    height: 30px;
+    background-color: rgb(187, 74, 29);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,9 +90,9 @@ body{
     transition: background-color 0.3s;
 }
 .cell3  {
-    width: 50px;
-    height: 50px;
-    background-color: rgb(189, 111, 22);
+    width: 30px;
+    height: 30px;
+    background-color: rgb(143, 184, 194);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,9 +100,9 @@ body{
     transition: background-color 0.3s;
 }
 .cell4 {
-    width: 50px;
-    height: 50px;
-    background-color: rgb(161, 24, 24);
+    width: 30px;
+    height: 30px;
+    background-color: rgb(125, 211, 125);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,7 +112,18 @@ body{
 .cell:hover {
     background-color: #bdb8b8;
 }
+.cell2:hover {
+    background-color: #bdb8b8;
+}
+.cell3:hover {
+    background-color: #bdb8b8;
+}
+.cell4:hover {
+    background-color: #bdb8b8;
+}
 .selected {
     background-color: #c9c614;
     color: white;
 }
+
+
