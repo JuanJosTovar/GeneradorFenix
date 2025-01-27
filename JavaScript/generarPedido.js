@@ -1,53 +1,62 @@
-const characteristicsToSelect = ['4']; // Características a seleccionar
+let juguetesData = {}; // Variable para los datos JSON cargados
 
-function selectCells() {
-    const cells = document.querySelectorAll('.cell');
-    
-    cells.forEach(cell => {
-        const characteristic = cell.getAttribute('data-characteristic');
-        if (characteristicsToSelect.includes(characteristic)) {
-            cell.classList.add('selected'); // Seleccionar celdas con características específicas
-            cell.onclick = function() { // Añadir evento de clic
-                this.classList.toggle('selected'); // Alternar la clase 'selected'
-        }}
-    });
-    const cells2 = document.querySelectorAll('.cell2');
-    cells2.forEach(cell2 => {
-        const characteristic = cell2.getAttribute('data-characteristic');
-        if (characteristicsToSelect.includes(characteristic)) {
-            cell2.classList.add('selected'); // Seleccionar celdas con características específicas
-            cell2.onclick = function() { // Añadir evento de clic
-                this.classList.toggle('selected'); // Alternar la clase 'selected'
-        }}
-    });
-    const cells3 = document.querySelectorAll('.cell3');
-    cells3.forEach(cell3 => {
-        const characteristic = cell3.getAttribute('data-characteristic');
-        if (characteristicsToSelect.includes(characteristic)) {
-            cell3.classList.add('selected'); // Seleccionar celdas con características específicas
-            cell3.onclick = function() { // Añadir evento de clic
-                this.classList.toggle('selected'); // Alternar la clase 'selected'
-        }}
-    });
-    const cells4 = document.querySelectorAll('.cell4');
-    cells4.forEach(cell4 => {
-        const characteristic = cell4.getAttribute('data-characteristic');
-        if (characteristicsToSelect.includes(characteristic)) {
-            cell4.classList.add('selected'); // Seleccionar celdas con características específicas
-            cell4.onclick = function() { // Añadir evento de clic
-                this.classList.toggle('selected'); // Alternar la clase 'selected'
-        }}
-    });
+// Función para buscar coincidencias y resaltar celdas basadas en la referencia ingresada
+function highlightAndFindReference() {
+    const searchValue = document.getElementById('search').value.trim().toLowerCase(); // Obtener referencia del input
+    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4'); // Todas las celdas del HTML
+
+    if (!juguetesData.juguetes) return; // Salir si los datos no están cargados
+
+    // Encontrar el juguete correspondiente a la referencia ingresada
+    const foundItem = juguetesData.juguetes.find(juguete => 
+        juguete.referencia.toLowerCase() === searchValue
+    );
+
+    if (foundItem) {
+
+        const canastaIds = foundItem.canastas.map(canasta => canasta.id);
+
+        allCells.forEach(cell => {
+            const cellId = cell.id;
+
+            if (canastaIds.includes(cellId)) {
+                cell.classList.add('selected');
+            } else {
+                cell.classList.remove('selected');
+            }
+        });
+
+        console.log(`Referencia encontrada: ${foundItem.referencia}`);
+        console.log(`Canastas asociadas: ${canastaIds.join(', ')}`);
+    } else {
+        // Si no se encuentra el producto, quitar resaltado
+        allCells.forEach(cell => cell.classList.remove('selected'));
+        console.log('Referencia no encontrada.');
+    }
 }
-window.onload = selectCells;
 
-//Buscador
-document.getElementById('search').addEventListener('keyup', function() {
-    const filter = this.value.toLowerCase();
-    const items = document.querySelectorAll('#buscador');
+// Cargar datos del archivo JSON (usando fetch)
+function loadJuguetesData() {
+    fetch('../data.json') // Ruta al archivo JSON
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error al cargar JSON: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            juguetesData = data; // Almacenar datos cargados
+            console.log('Datos cargados:', juguetesData);
+        })
+        .catch(error => {
+            console.error('Error al cargar el archivo JSON:', error);
+        });
+}
 
-    items.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(filter) ? '' : 'none';
-    });
-});
+// Inicializar funciones al cargar la página
+window.onload = function () {
+    loadJuguetesData(); // Cargar datos del JSON
+};
+
+// Evento para ejecutar la búsqueda mientras se escribe
+document.getElementById('search').addEventListener('input', highlightAndFindReference);

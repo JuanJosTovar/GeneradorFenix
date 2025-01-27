@@ -126,4 +126,26 @@ body{
     color: white;
 }
 
+.cell.highlighted,
+.cell2.highlighted,
+.cell3.highlighted,
+.cell4.highlighted {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    z-index: 1;
+}
 
+/* Asegurar que el resaltado no interfiera con la selección */
+.cell.highlighted.selected,
+.cell2.highlighted.selected,
+.cell3.highlighted.selected,
+.cell4.highlighted.selected {
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    opacity: 0.85;
+}
+
+/* Mejorar la transición */
+.cell, .cell2, .cell3, .cell4 {
+    transition: all 0.3s ease;
+    position: relative;
+}

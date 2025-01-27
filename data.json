@@ -1,0 +1,45 @@
+{
+    "juguetes":[
+        {
+            "referencia":"pf955-1",
+            "canastas":[
+                {
+                    "id":"B3-M1-CA-F1-P4",
+                    "detalles":[
+                        {"cantidad": 15, "color":"rojo"},
+                        {"cantidad": 5, "color":"azul"}
+                    ]
+                },
+                {
+                    "id":"B3-M1-CA-F2-P4",
+                    "detalles":[
+                        {"cantidad":10, "color":"verde"}
+                    ]
+                }
+            ]
+        },
+        {
+            "referencia":"pf344",
+            "canastas":[
+                {
+                    "id":"B3-M1-CA-F3-P4",
+                    "detalles":[
+                        {"cantidad": 23, "color":"amarillo"},
+                        {"cantidad": 1, "color":"rosado"}
+                    ]
+                }
+            ]
+        },
+        {
+            "referencia":"pf202",
+            "canastas":[
+                {
+                    "id":"B3-M2-CA-F1-P1",
+                    "detalles":[
+                        {"cantidad": 60}
+                    ]
+                }
+            ]
+        }
+    ]
+}
