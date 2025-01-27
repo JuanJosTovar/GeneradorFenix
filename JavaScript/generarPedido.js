@@ -21,9 +21,13 @@ function highlightAndFindReference() {
 
             if (canastaIds.includes(cellId)) {
                 cell.classList.add('selected');
-            } else {
+            } if(canastaIds.includes(cellId)){
+                cell.onclick = function(){
+                    this.classList.toggle('selected'); 
+                }
+            }else {
                 cell.classList.remove('selected');
-            }
+            } 
         });
 
         console.log(`Referencia encontrada: ${foundItem.referencia}`);

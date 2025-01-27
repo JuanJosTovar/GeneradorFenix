@@ -9,10 +9,16 @@ body{
     justify-content: space-around;
 
 }
-.container-buscador {
+.search-head{
+    height: 10rem;
+    width: 100%;
     display: flex;
     justify-content: center;
-    width: 25rem;
+    flex-direction: column;
+    background-color: #252525;
+    align-items: center;
+    padding: 0%;
+    margin: 0%;
 }
 
 .titulo{
@@ -25,12 +31,12 @@ body{
     padding:2%;
     background-color: #9b9797;
     border-radius: 10rem;
-    width: 70%;
+    width: 20rem;
 }
 
 .Mapa{
     background-color: #474747;
-    height: 40rem;
+    height: 42rem;
     width: 98vb;
    display: flex;
    justify-content: center;
@@ -45,9 +51,25 @@ body{
     align-content: center;
     justify-items: center;
     align-items: center;
-    grid-template-columns: repeat(23, 8px);
-    grid-template-rows: repeat(16, 8px);
+    grid-template-columns: repeat(24, 8px);
+    grid-template-rows: repeat(18, 8px);
     gap: 28px;
+}
+.filas{
+    width: 30px;
+    height: 30px;
+    background-color: #ffffffda;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.modulos {
+    width: 36px;
+    height: 35.1px;
+    background-color: #ffffffda;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
 }
     
 .Mapa2{
