@@ -33,6 +33,17 @@ body{
     border-radius: 10rem;
     width: 20rem;
 }
+.info {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px;
+    display: none;
+    z-index: 1000;
+    height: 5rem;
+    width: 10rem;
+    color: #252525;
+}
 
 .Mapa{
     background-color: #474747;
@@ -146,6 +157,9 @@ body{
 .selected {
     background-color: #c9c614;
     color: white;
+}
+.deselected {
+    background-color: lightgray;
 }
 
 .cell.highlighted,
