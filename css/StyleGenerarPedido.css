@@ -46,7 +46,7 @@ body{
 }
 
 .Mapa{
-    background-color: #474747;
+    background-color: #464545;
     height: 42rem;
     width: 98vb;
    display: flex;
@@ -84,7 +84,7 @@ body{
 }
     
 .Mapa2{
-    background-color: #474747;
+    background-color: #464545;
     height: 12rem;
     width: 98vb;
     display: flex;
@@ -105,7 +105,7 @@ body{
 .cell {
     width: 30px;
     height: 30px;
-    background-color: rgb(168, 126, 35);
+    background-color: rgb(207, 173, 98);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,7 +115,7 @@ body{
 .cell2 {
     width: 30px;
     height: 30px;
-    background-color: rgb(187, 74, 29);
+    background-color: rgb(209, 131, 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,7 +125,7 @@ body{
 .cell3  {
     width: 30px;
     height: 30px;
-    background-color: rgb(143, 184, 194);
+    background-color: rgb(168, 201, 209);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,7 +135,7 @@ body{
 .cell4 {
     width: 30px;
     height: 30px;
-    background-color: rgb(125, 211, 125);
+    background-color: rgb(171, 228, 174);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -155,11 +155,11 @@ body{
     background-color: #bdb8b8;
 }
 .selected {
-    background-color: #c9c614;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
 }
 .deselected {
-    background-color: lightgray;
+    background-color: #b1b0b0;
 }
 
 .cell.highlighted,
