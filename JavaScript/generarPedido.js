@@ -13,13 +13,15 @@ function highlightAndFindReference() {
         canasta.referencias.some(ref => ref.referencia.toLowerCase() === searchValue)
     );
 
-    // Limpiar selección anterior
-    allCells.forEach(cell => {
-        cell.classList.remove('selected', 'deselected');
-        cell.onmouseover = null;
-        cell.onmouseout = null;
-    });
-    selectedCells.clear();
+    // Limpiar selección anterior solo si hay un valor en la búsqueda
+    if (searchValue.length > 0) {
+        allCells.forEach(cell => {
+            cell.classList.remove('selected', 'deselected');
+            cell.onmouseover = null;
+            cell.onmouseout = null;
+        });
+        selectedCells.clear();
+    }
 
     if (foundCanastas.length > 0) {
         foundCanastas.forEach(canasta => {
@@ -41,6 +43,9 @@ function highlightAndFindReference() {
             }
         });
     }
+
+    // Actualizar el listado de canastas seleccionadas
+    updateSelectedBasketList();
 }
 
 // Alternar selección de la celda
@@ -56,6 +61,7 @@ function toggleSelection(cell) {
         cell.classList.add('selected');
         cell.classList.remove('deselected');
     }
+    updateSelectedBasketList(); // Actualizar el listado de canastas seleccionadas
 }
 
 function getDetalles(canasta, referencia) {
@@ -73,8 +79,26 @@ function showInfoBox(event, detalles) {
     infoBox.style.left = event.pageX + 'px';
     infoBox.style.top = event.pageY + 'px';
 }
+
 function hideInfoBox() {
     document.getElementById('infoBox').style.display = 'none';
+}
+
+// Actualizar el listado de canastas seleccionadas
+function updateSelectedBasketList() {
+    const selectedBasketList = document.getElementById('selectedBasketList');
+    selectedBasketList.innerHTML = ''; // Limpiar la lista existente
+
+    selectedCells.forEach(cellId => {
+        const canasta = juguetesData.canastas.find(c => c.id === cellId);
+        if (canasta) {
+            canasta.referencias.forEach(ref => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `ID: ${canasta.id}. Referencia: ${ref.referencia}\nColor: ${ref.color || 'N/A'}`;
+                selectedBasketList.appendChild(listItem);
+            });
+        }
+    });
 }
 
 // Cargar datos del archivo JSON
