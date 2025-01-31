@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa Cadricular</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 <link rel="stylesheet" href="/css/StyleGenerarPedido.css">
 </head>
 <body>
@@ -12,7 +13,9 @@
     <div class="container-buscador">
         <input type=    "text" id="search" placeholder="Referencia..">
     </div>
+   
 </header>
+<button id="toggleFloatingDiv">📋​</button>
 <main class="Mapa">
     <div class="grid">
         <div class="modulos"></div>
@@ -407,12 +410,11 @@
         <div class="cell4" id="B3-M6-CD-F2-P1" onclick="selectCell(this)">1</div>
         <div class="cell4" id="B3-M6-CD-F3-P1" onclick="selectCell(this)">1</div>
         <div class="cell4" id="B3-M6-CD-F4-P1" onclick="selectCell(this)">1</div>
-
     </div>
-    
 </main>
 <main class="Mapa2">
 <div class="grid2">
+    <div class="modulos">E</div><div class="cell4" id="B3-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
@@ -435,7 +437,7 @@
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
-    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="modulos">F</div><div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
@@ -458,6 +460,7 @@
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="modulos">H</div><div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
@@ -480,10 +483,7 @@
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
-    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
-    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
-    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
-    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="modulos">H</div><div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
@@ -505,15 +505,126 @@
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
     <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
-
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
 </div>
     </div>
 </main>
+<main class="Mapa3">
+    <div class="grid3">
+    <div class="modulos">I</div><div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell4" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="modulos">J</div><div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell3" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="modulos">K</div><div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell2" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="modulos">L</div><div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">3</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">3</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">3</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">3</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">3</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    <div class="cell" id="B1-M1-CA-F1-P4" onclick="selectCell(this)">4</div>
+    </div>
+</main>
+
 <div class="info" id="infoBox"></div>
-<div id="floatingDiv">
+<div id="floatingDiv" class="View-div">
     <h3>Canastas Seleccionadas</h3>
     <ul id="selectedBasketList"></ul>
+    <button id="exportButton">Exportar a Excel</button>
 </div>
+
     <script src="/JavaScript/generarPedido.js"></script>
 </body>
 </html>

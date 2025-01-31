@@ -9,9 +9,8 @@ function highlightAndFindReference() {
     if (!juguetesData.canastas) return; // Salir si los datos no están cargados
 
     // Filtrar canastas que contienen la referencia ingresada
-    const foundCanastas = juguetesData.canastas.filter(canasta =>
-        canasta.referencias.some(ref => ref.referencia.toLowerCase() === searchValue)
-    );
+  // Separar las referencias ingresadas por comas y eliminar espacios
+  const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
 
     // Limpiar selección anterior solo si hay un valor en la búsqueda
     if (searchValue.length > 0) {
@@ -22,6 +21,10 @@ function highlightAndFindReference() {
         });
         selectedCells.clear();
     }
+    const foundCanastas = juguetesData.canastas.filter(canasta =>
+        canasta.referencias.some(ref => references.includes(ref.referencia.toLowerCase()))
+    );
+
 
     if (foundCanastas.length > 0) {
         foundCanastas.forEach(canasta => {
@@ -64,11 +67,10 @@ function toggleSelection(cell) {
     updateSelectedBasketList(); // Actualizar el listado de canastas seleccionadas
 }
 
-function getDetalles(canasta, referencia) {
+function getDetalles(canasta, references) {
     return canasta.referencias
-        .filter(ref => ref.referencia.toLowerCase() === referencia)
-        .map(ref => `Cantidad: ${ref.cantidad}${ref.color ? ', Color: ' + ref.color : ''}`)
-        .join(' | ');
+        .filter(ref => references.includes(ref.referencia.toLowerCase()))
+        .map(ref => `Referencia: ${ref.referencia}\n Color: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}`) // Salto de línea entre cantidad y color
 }
 
 // Mostrar el cuadro de información
@@ -94,11 +96,40 @@ function updateSelectedBasketList() {
         if (canasta) {
             canasta.referencias.forEach(ref => {
                 const listItem = document.createElement('li');
-                listItem.textContent = `ID: ${canasta.id}. Referencia: ${ref.referencia}\nColor: ${ref.color || 'N/A'}`;
+                listItem.textContent = `ID: ${canasta.id}. Referencia: ${ref.referencia}\nColor: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}`;
                 selectedBasketList.appendChild(listItem);
             });
         }
     });
+}
+
+// Función para exportar datos a Excel
+function exportToExcel() {
+    const selectedData = [];
+
+    selectedCells.forEach(cellId => {
+        const canasta = juguetesData.canastas.find(c => c.id === cellId);
+        if (canasta) {
+            canasta.referencias.forEach(ref => {
+                selectedData.push({
+                    ID: canasta.id,
+                    Referencia: ref.referencia,
+                    Cantidad: ref.cantidad,
+                    Color: ref.color || 'N/A'
+                });
+            });
+        }
+    });
+
+    if (selectedData.length === 0) {
+        alert("No hay datos seleccionados para exportar."); // Mensaje de alerta si no hay datos
+        return;
+    }
+
+    const ws = XLSX.utils.json_to_sheet(selectedData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Canastas Seleccionadas");
+    XLSX.writeFile(wb, "canastas_seleccionadas.xlsx");
 }
 
 // Cargar datos del archivo JSON
@@ -115,10 +146,17 @@ function loadJuguetesData() {
         .catch(error => console.error('Error al cargar el archivo JSON:', error));
 }
 
+function toggleFloatingDiv() {
+    const floatingDiv = document.getElementById('floatingDiv');
+    floatingDiv.classList.toggle('View-div');
+}
+
 // Inicializar funciones al cargar la página
 window.onload = function () {
     loadJuguetesData();
+    document.getElementById('exportButton').onclick = exportToExcel;
+    // Evento para ejecutar la búsqueda mientras se escribe
+    document.getElementById('search').addEventListener('input', highlightAndFindReference);
+    document.getElementById('toggleFloatingDiv').onclick = toggleFloatingDiv; // Asignar evento al botón de mostrar/ocultar
 };
 
-// Evento para ejecutar la búsqueda mientras se escribe
-document.getElementById('search').addEventListener('input', highlightAndFindReference);
