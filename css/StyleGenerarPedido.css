@@ -37,7 +37,7 @@ body{
 
 .titulo{
     padding: 0%;
-    margin: 0%;
+    margin: 20px;
     text-decoration: double;
     color: #bdb8b8;
 }
@@ -60,9 +60,9 @@ body{
 }
 
 .Mapa{
-    background-color: #464545;
-    height: 42rem;
-    width: 98vb;
+    background-color: #3d3d3d;
+    height: 41rem;
+    width: 56rem;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -122,6 +122,7 @@ body{
     grid-template-columns: repeat(24, 8px);
     grid-template-rows: repeat(18, 8px);
     gap: 28px;
+    margin-top: 2rem;
 }
 .filas{
     width: 30px;
@@ -141,9 +142,9 @@ body{
 }
     
 .Mapa2{
-    background-color: #464545;
-    height: 12rem;
-    width: 98vb;
+    background-color: #3d3d3d;
+    height: 13rem;
+    width: 56rem;
     display: flex;
     justify-content: center;
 
@@ -155,19 +156,18 @@ body{
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(24, 8px);
-    grid-template-rows: repeat(4, 8px);
+    grid-template-rows: repeat(5, 8px);
     gap: 28px;
 }
 
 .Mapa3{
-    background-color: #464545;
-    height: 12rem;
+    background-color: #3d3d3d;
+    height: 13rem;
     width: 63rem;
     display: flex;
     justify-content: center;
     margin-top: 5rem;
-    margin-left: 6.95rem;
-
+    margin-left: 6.97rem;
 }
 .grid3{
     display: grid;
@@ -176,7 +176,7 @@ body{
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(27, 8px);
-    grid-template-rows: repeat(4, 8px);
+    grid-template-rows: repeat(5, 8px);
     gap: 28px;
 }
 
