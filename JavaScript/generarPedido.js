@@ -1,6 +1,18 @@
 let juguetesData = {}; // Variable para los datos JSON cargados
 let selectedCells = new Set();
 
+document.getElementById('toggleTheme').onclick = function () {
+    const body = document.body;
+    body.classList.toggle('dark-mode'); // Alternar la clase 'dark-mode'
+
+    // Cambiar el texto del botón según el modo actual
+    if (body.classList.contains('dark-mode')) {
+        this.textContent = '☀︎';
+    } else {
+        this.textContent = '⏾';
+    }
+};
+
 // Función para buscar coincidencias y resaltar celdas basadas en la referencia ingresada
 function highlightAndFindReference() {
     const searchValue = document.getElementById('search').value.trim().toLowerCase(); // Obtener referencia del input
