@@ -3,13 +3,13 @@ let selectedCells = new Set();
 
 // Función para buscar coincidencias y resaltar celdas basadas en la referencia ingresada
 function highlightAndFindReference() {
-    const searchValue = document.getElementById('search').value.trim().toLowerCase(); // Obtener referencia del input
-    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4'); // Todas las celdas del HTML
+    const searchValue = document.getElementById('search').value.trim().toLowerCase();
+    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4');
 
-    if (!juguetesData.canastas) return; // Salir si los datos no están cargados
+    if (!juguetesData.canastas) return;
 
-    // Filtrar canastas que contienen la referencia ingresada
-    const foundCanastas = juguetesData.canastas.filter(canasta =>
+    // Convertir el objeto de canastas en un array para filtrarlo
+    const foundCanastas = Object.values(juguetesData.canastas).filter(canasta =>
         canasta.referencias.some(ref => ref.referencia.toLowerCase() === searchValue)
     );
 
@@ -25,7 +25,7 @@ function highlightAndFindReference() {
         foundCanastas.forEach(canasta => {
             const cell = document.getElementById(canasta.id);
             if (cell) {
-                cell.classList.add('selected'); // Seleccionar automáticamente
+                cell.classList.add('selected');
                 selectedCells.add(canasta.id);
                 
                 cell.onmouseover = function(event) {
@@ -58,6 +58,7 @@ function toggleSelection(cell) {
     }
 }
 
+// Obtener detalles de la referencia
 function getDetalles(canasta, referencia) {
     return canasta.referencias
         .filter(ref => ref.referencia.toLowerCase() === referencia)
@@ -73,13 +74,15 @@ function showInfoBox(event, detalles) {
     infoBox.style.left = event.pageX + 'px';
     infoBox.style.top = event.pageY + 'px';
 }
+
+// Ocultar el cuadro de información
 function hideInfoBox() {
     document.getElementById('infoBox').style.display = 'none';
 }
 
 // Cargar datos del archivo JSON
 function loadJuguetesData() {
-    fetch('../data.json')
+    fetch('../productos.json')
         .then(response => {
             if (!response.ok) throw new Error(`Error al cargar JSON: ${response.status}`);
             return response.json();
