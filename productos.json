@@ -1,0 +1,94 @@
+{
+    "canastas": {
+        "B3-M1-CA-F1-P4": {
+            "id": "B3-M1-CA-F1-P4",
+            "referencias": [
+                {
+                    "referencia": "pf543",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                }
+            ]
+        },
+        "B3-M1-CA-F1-P3": {
+            "id": "B3-M1-CA-F1-P3",
+            "referencias": [
+                {
+                    "referencia": "pf555",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                },
+                {
+                    "referencia": "pf512",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                }
+            ]
+        },
+        "B3-M1-CA-F1-P2": {
+            "id": "B3-M1-CA-F1-P2",
+            "referencias": [
+                {
+                    "referencia": "pf543",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                }
+            ]
+        },
+        "B3-M1-CA-F1-P1": {
+            "id": "B3-M1-CA-F1-P1",
+            "referencias": [
+                {
+                    "referencia": "pf233",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                }
+            ]
+        },
+        "B3-M1-CA-F2-P4": {
+            "id": "B3-M1-CA-F2-P4",
+            "referencias": [
+                {
+                    "referencia": "pf032",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                }
+            ]
+        },
+        "B3-M1-CA-F2-P3": {
+            "id": "B3-M1-CA-F2-P3",
+            "referencias": [
+                {
+                    "referencia": "pf543",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                }
+            ]
+        },
+        "B3-M1-CA-F2-P2": {
+            "id": "B3-M1-CA-F2-P2",
+            "referencias": [
+                {
+                    "referencia": "pf543",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                },
+                {
+                    "referencia": "pf032",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                }
+            ]
+        },
+        "B3-M1-CA-F2-P1": {
+            "id": "B3-M1-CA-F2-P1",
+            "referencias": [
+                {
+                    "referencia": "pf101",
+                    "cantidad": 12345,
+                    "color": "asdas"
+                }
+            ]
+        }
+    }
+}

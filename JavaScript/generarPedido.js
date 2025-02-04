@@ -3,28 +3,20 @@ let selectedCells = new Set();
 
 document.getElementById('toggleTheme').onclick = function () {
     const body = document.body;
-    body.classList.toggle('dark-mode'); // Alternar la clase 'dark-mode'
+    body.classList.toggle('dark-mode');
 
-    // Cambiar el texto del botón según el modo actual
-    if (body.classList.contains('dark-mode')) {
-        this.textContent = '☀︎';
-    } else {
-        this.textContent = '⏾';
-    }
+    this.textContent = body.classList.contains('dark-mode') ? '☀︎' : '⏾';
 };
 
 // Función para buscar coincidencias y resaltar celdas basadas en la referencia ingresada
 function highlightAndFindReference() {
-    const searchValue = document.getElementById('search').value.trim().toLowerCase(); // Obtener referencia del input
-    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4'); // Todas las celdas del HTML
+    const searchValue = document.getElementById('search').value.trim().toLowerCase();
+    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4');
 
-    if (!juguetesData.canastas) return; // Salir si los datos no están cargados
+    if (!juguetesData.canastas) return;
 
-    // Filtrar canastas que contienen la referencia ingresada
-  // Separar las referencias ingresadas por comas y eliminar espacios
-  const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
+    const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
 
-    // Limpiar selección anterior solo si hay un valor en la búsqueda
     if (searchValue.length > 0) {
         allCells.forEach(cell => {
             cell.classList.remove('selected', 'deselected');
@@ -33,20 +25,21 @@ function highlightAndFindReference() {
         });
         selectedCells.clear();
     }
-    const foundCanastas = juguetesData.canastas.filter(canasta =>
+
+    // Iterar sobre el objeto `canastas`
+    const foundCanastas = Object.values(juguetesData.canastas).filter(canasta =>
         canasta.referencias.some(ref => references.includes(ref.referencia.toLowerCase()))
     );
-
 
     if (foundCanastas.length > 0) {
         foundCanastas.forEach(canasta => {
             const cell = document.getElementById(canasta.id);
             if (cell) {
-                cell.classList.add('selected'); // Seleccionar automáticamente
+                cell.classList.add('selected');
                 selectedCells.add(canasta.id);
-                
+
                 cell.onmouseover = function(event) {
-                    const detalles = getDetalles(canasta, searchValue);
+                    const detalles = getDetalles(canasta, references);
                     showInfoBox(event, detalles);
                 };
                 cell.onmouseout = function() {
@@ -59,11 +52,9 @@ function highlightAndFindReference() {
         });
     }
 
-    // Actualizar el listado de canastas seleccionadas
     updateSelectedBasketList();
 }
 
-// Alternar selección de la celda
 function toggleSelection(cell) {
     const cellId = cell.id;
 
@@ -76,13 +67,13 @@ function toggleSelection(cell) {
         cell.classList.add('selected');
         cell.classList.remove('deselected');
     }
-    updateSelectedBasketList(); // Actualizar el listado de canastas seleccionadas
+    updateSelectedBasketList();
 }
 
 function getDetalles(canasta, references) {
     return canasta.referencias
         .filter(ref => references.includes(ref.referencia.toLowerCase()))
-        .map(ref => `Referencia: ${ref.referencia}\n Color: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}`) // Salto de línea entre cantidad y color
+        .map(ref => `Referencia: ${ref.referencia}\n Color: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}`)
 }
 
 // Mostrar el cuadro de información
@@ -101,10 +92,10 @@ function hideInfoBox() {
 // Actualizar el listado de canastas seleccionadas
 function updateSelectedBasketList() {
     const selectedBasketList = document.getElementById('selectedBasketList');
-    selectedBasketList.innerHTML = ''; // Limpiar la lista existente
+    selectedBasketList.innerHTML = '';
 
     selectedCells.forEach(cellId => {
-        const canasta = juguetesData.canastas.find(c => c.id === cellId);
+        const canasta = juguetesData.canastas[cellId]; // Acceder directamente al objeto
         if (canasta) {
             canasta.referencias.forEach(ref => {
                 const listItem = document.createElement('li');
@@ -120,7 +111,7 @@ function exportToExcel() {
     const selectedData = [];
 
     selectedCells.forEach(cellId => {
-        const canasta = juguetesData.canastas.find(c => c.id === cellId);
+        const canasta = juguetesData.canastas[cellId]; // Acceder directamente al objeto
         if (canasta) {
             canasta.referencias.forEach(ref => {
                 selectedData.push({
@@ -134,7 +125,7 @@ function exportToExcel() {
     });
 
     if (selectedData.length === 0) {
-        alert("No hay datos seleccionados para exportar."); // Mensaje de alerta si no hay datos
+        alert("No hay datos seleccionados para exportar.");
         return;
     }
 
@@ -146,7 +137,7 @@ function exportToExcel() {
 
 // Cargar datos del archivo JSON
 function loadJuguetesData() {
-    fetch('../data.json')
+    fetch('../productos.json')
         .then(response => {
             if (!response.ok) throw new Error(`Error al cargar JSON: ${response.status}`);
             return response.json();
@@ -167,8 +158,6 @@ function toggleFloatingDiv() {
 window.onload = function () {
     loadJuguetesData();
     document.getElementById('exportButton').onclick = exportToExcel;
-    // Evento para ejecutar la búsqueda mientras se escribe
     document.getElementById('search').addEventListener('input', highlightAndFindReference);
-    document.getElementById('toggleFloatingDiv').onclick = toggleFloatingDiv; // Asignar evento al botón de mostrar/ocultar
+    document.getElementById('toggleFloatingDiv').onclick = toggleFloatingDiv;
 };
-
