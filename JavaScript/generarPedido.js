@@ -94,19 +94,31 @@ function hideInfoBox() {
     document.getElementById('infoBox').style.display = 'none';
 }
 
-// Actualizar el listado de canastas seleccionadas
 function updateSelectedBasketList() {
     const selectedBasketList = document.getElementById('selectedBasketList');
     selectedBasketList.innerHTML = '';
 
+    const searchValue = document.getElementById('search').value.trim().toLowerCase();
+    const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
+
     selectedCells.forEach(cellId => {
-        const canasta = juguetesData.canastas[cellId]; // Acceder directamente al objeto
+        const canasta = juguetesData.canastas[cellId]; 
         if (canasta) {
-            canasta.referencias.forEach(ref => {
+            const referenciasFiltradas = canasta.referencias.filter(ref => 
+                references.includes(ref.referencia.toLowerCase())
+            );
+
+            if (referenciasFiltradas.length > 0) {
                 const listItem = document.createElement('li');
-                listItem.textContent = `ID: ${canasta.id}. Referencia: ${ref.referencia}\nColor: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}`;
+                
+                let detalles = `ID: ${canasta.id}\n`;
+                referenciasFiltradas.forEach(ref => {
+                    detalles +=` Referencia: ${ref.referencia}\nColor: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}\n`;
+                });
+
+                listItem.textContent = detalles;
                 selectedBasketList.appendChild(listItem);
-            });
+            }
         }
     });
 }
@@ -114,11 +126,18 @@ function updateSelectedBasketList() {
 // Función para exportar datos a Excel
 function exportToExcel() {
     const selectedData = [];
+    const searchValue = document.getElementById('search').value.trim().toLowerCase();
+    const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
+
 
     selectedCells.forEach(cellId => {
-        const canasta = juguetesData.canastas[cellId]; // Acceder directamente al objeto
+        const canasta = juguetesData.canastas[cellId];
         if (canasta) {
-            canasta.referencias.forEach(ref => {
+            const referenciasFiltradas = canasta.referencias.filter(ref => 
+                references.includes(ref.referencia.toLowerCase())
+            ); // Acceder directamente al objeto
+        if (canasta) {
+            referenciasFiltradas.forEach(ref => {
                 selectedData.push({
                     ID: canasta.id,
                     Referencia: ref.referencia,
@@ -127,7 +146,8 @@ function exportToExcel() {
                 });
             });
         }
-    });
+    
+}});
 
     if (selectedData.length === 0) {
         alert("No hay datos seleccionados para exportar.");
