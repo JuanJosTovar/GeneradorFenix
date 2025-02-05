@@ -3,9 +3,14 @@ let selectedCells = new Set();
 
 document.getElementById('toggleTheme').onclick = function () {
     const body = document.body;
-    body.classList.toggle('dark-mode');
+    body.classList.toggle('dark-mode'); // Alternar la clase 'dark-mode'
 
-    this.textContent = body.classList.contains('dark-mode') ? '☀︎' : '⏾';
+    // Cambiar el texto del botón según el modo actual
+    if (body.classList.contains('dark-mode')) {
+        this.textContent = '𖤓';
+    } else {
+        this.textContent = '⏾';
+    }
 };
 
 // Función para buscar coincidencias y resaltar celdas basadas en la referencia ingresada
