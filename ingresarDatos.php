@@ -17,56 +17,44 @@
             <form id="formulario" method="POST" action="guardar_datos.php">
                 <h2 class="tittle">Ingresar Datos</h2>
                 <div>
-                    <label for="id_canasta">Id Canasta</label>
-                    <input class="input-form" type="text" id="id_canasta" name="id_canasta" placeholder="Ejemplo: B3-M1-CA-F1-P4...">
+                    <p for="id_canasta">Id Canasta</p>
+                    <input class="input-form" type="text" id="id_canasta" name="id_canasta" placeholder="Ejemplo: B3-M1-CA-F1-P4" required>
                 </div>
                 <div>
-                    <label for="referencai">Referencia</label>
-                    <input class="input-form" type="text" id="referencia" name="referencia" placeholder="Ejemplo: pf344...">
+                    <p for="referencai">Referencia</p>
+                    <input class="input-form" type="text" id="referencia" name="referencia" placeholder="Ejemplo: pf344" required>
                 </div>
                 <div>
-                    <label for="cantidad">Cantidad</label>
-                    <input class="input-form" type="text" id="cantidad" name="cantidad" placeholder="Ejemplo: 2000...">
+                    <p for="cantidad">Cantidad</p>
+                    <input class="input-form" type="number" id="cantidad" name="cantidad" placeholder="Ejemplo: 2000" required>
                 </div>
                 <div>
-                    <label for="color">Color (Opcional)</label>
-                    <input class="input-form" type="text" id="color" name="color" placeholder="Ejemplo: Rojo...">
+                    <p for="color">Color (Opcional)</p>
+                    <input class="input-form" type="text" id="color" name="color" placeholder="Ejemplo: Rojo">
                 </div>
-                <button type="submit" name="action" value="add">Guardar</button>
+                <button class="guardar" type="submit" name="action" value="add">Guardar</button>
             </form>
         </section>
 
         <div class="instructions-part">
-            <p>Aquí van las instrucciones o detalles adicionales sobre cómo ingresar los datos.</p>
+            <h1>Instrucciones de Ingreso</h1>
+            <p>1. Ingresa el id de la canasta con el debido patron indicado en la que sera guardada la nueva referencia Ej: B3-M1-CA-F1-P4 (sin espacios y con mayúsculas)
+            <br>
+            <strong class="subtitulo">ADVERTENCIA</strong>
+            <br>
+            En caso de tener que agregar una nueva canasta, avisar al desarrollador previamente</p>
+            <p>2. Ingresa la referencia que vas a guardar en la canasta Ej: pf385 (sin espacios y sin mayúsculas)</p>
+            <p>3. Ingresa la cantidad/stock de la referencia que ingresaste previamente Ej: 166 (sin espacios y este campo solo admite numeros enteros)</p>
+            <p>4. Ingresa el color de la referencia si este es necesario Ej: Azul (sin espacios y sin mayúsculas) recuerda que este campo es opcional</p>
+            <br></br>
+            <h1>Notas Importantes</h1>
+            <ul class="notas">
+                <li>Al ingresar y guardar un id de canasta que no existe esto genera automaticamente una nueva canasta, lo cual puede generar errores en el mapeado para los pedidos, por lo tanto se le pide informar al desarrollador previamente</li>
+                <li>Al ingresar y guardar un id de canasta y una referencia existente con un color diferente a uno previamente guardado, se creara un objeto diferente y no actualizara el anterior ya que su color es distinto</li>
+                <li>Al ingersar y guardar un id de canasta, referencia y color existente con una cantidad diferente a una previamente guardada, se actualizara la cantidad de este objeto sumando la cantidad previa con la recien ingresada</li>
+            </ul>
         </div>
     </section>
     
-    <!-- Mostrar la lista de canastas -->
-    <section id="result_container">
-        <h2>Lista de Canastas</h2>
-        <ul id="canastaList">
-            <?php
-            // Cargar el archivo JSON
-            $json_data = file_get_contents('productos.json');
-            $data = json_decode($json_data, true);
-
-            // Verificar si el archivo contiene canastas
-            if (isset($data['canastas']) && is_array($data['canastas'])) {
-                foreach ($data['canastas'] as $canasta) {
-                    echo "<li>";
-                    echo "<strong>Id Canasta:</strong> {$canasta['id']}<br>";
-                    echo "<strong>Referencias:</strong><br>";
-                    foreach ($canasta['referencias'] as $ref) {
-                        echo "Referencia: {$ref['referencia']}, Cantidad: {$ref['cantidad']}, Color: {$ref['color']}<br>";
-                    }
-                    echo "</li><br>";
-                }
-            } else {
-                echo "<li>No se encontraron canastas disponibles.</li>";
-            }
-            ?>
-        </ul>
-    </section>
-
 </body>
 </html>

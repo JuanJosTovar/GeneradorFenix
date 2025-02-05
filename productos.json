@@ -9,6 +9,56 @@
                     "color": "asdas"
                 }
             ]
+        },
+        "B3-M1-CA-F1-P3": {
+            "id": "B3-M1-CA-F1-P3",
+            "referencias": [
+                {
+                    "referencia": "pf955-1",
+                    "cantidad": 500,
+                    "color": "Rojo"
+                },
+                {
+                    "referencia": "pf203",
+                    "cantidad": 1234,
+                    "color": "Rojo"
+                }
+            ]
+        },
+        "B3-M1-CA-F1-P2": {
+            "id": "B3-M1-CA-F1-P2",
+            "referencias": [
+                {
+                    "referencia": "pf211",
+                    "cantidad": 12345,
+                    "color": ""
+                }
+            ]
+        },
+        "B3-M6-CD-F4-P1": {
+            "id": "B3-M6-CD-F4-P1",
+            "referencias": [
+                {
+                    "referencia": "pf988",
+                    "cantidad": 100002124,
+                    "color": "Verde"
+                },
+                {
+                    "referencia": "pf988",
+                    "cantidad": 1212,
+                    "color": "Rojo"
+                }
+            ]
+        },
+        "B3-M1-CA-F1-P1": {
+            "id": "B3-M1-CA-F1-P1",
+            "referencias": [
+                {
+                    "referencia": "pf988",
+                    "cantidad": 123,
+                    "color": "Morado"
+                }
+            ]
         }
     }
 }
