@@ -57,6 +57,11 @@
                     "referencia": "pf988",
                     "cantidad": 123,
                     "color": "Morado"
+                },
+                {
+                    "referencia": "pf555",
+                    "cantidad": 1212,
+                    "color": "Verde"
                 }
             ]
         }

@@ -17,6 +17,7 @@
     width: 16rem;
     height: 8rem;
     background-color: #252525;
+    cursor: pointer;
 }
 
 .form-part {

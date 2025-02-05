@@ -9,7 +9,7 @@
 <body>
     
     <header class="menu">
-        <img src="./images/LOGO-PLASTICOS-FENIX.png" alt="" class="logo">
+        <img src="./images/LOGO-PLASTICOS-FENIX.png" alt="" class="logo" onclick="navigateTo('index.html')">
     </header>
 
     <section class="form-part">
@@ -56,5 +56,6 @@
         </div>
     </section>
     
+    <script src="./JavaScript/app.js"></script>
 </body>
 </html>

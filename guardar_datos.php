@@ -1,7 +1,6 @@
 <?php
 $file = 'productos.json';
 
-// Leer el archivo JSON y decodificarlo en un array PHP
 $productos = json_decode(file_get_contents($file), true);
 
 // Si no hay datos en el archivo, inicializar la estructura
@@ -12,9 +11,9 @@ if (!$productos) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Limpiar y sanitizar datos
     $canasta_id = strtoupper(preg_replace('/\s+/', '', trim($_POST['id_canasta'])));
-    $referencia = preg_replace('/\s+/', '', trim($_POST['referencia']));
-    $cantidad = intval($_POST['cantidad']);
-    $color = trim($_POST['color']); // Mantiene espacios internos, pero elimina los externos
+    $referencia = strtolower(preg_replace('/\s+/', '', trim($_POST['referencia'])));
+    $cantidad = preg_replace('/\s+/', '', intval($_POST['cantidad']));
+    $color = ucfirst(strtolower(trim($_POST['color'])));
 
     // Verificar si la canasta existe, si no, crearla
     if (!isset($productos["canastas"][$canasta_id])) {
@@ -24,18 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ];
     }
 
-    // Buscar si la referencia y el color ya existen en la canasta
     $existe = false;
     foreach ($productos["canastas"][$canasta_id]["referencias"] as &$ref) {
         if ($ref["referencia"] === $referencia && $ref["color"] === $color) {
-            // Si ya existe, sumar la cantidad
             $ref["cantidad"] += $cantidad;
             $existe = true;
             break;
         }
     }
 
-    // Si no existe una referencia con el mismo color, agregarla
     if (!$existe) {
         $productos["canastas"][$canasta_id]["referencias"][] = [
             "referencia" => $referencia,
@@ -44,10 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ];
     }
 
-    // Guardar los cambios en el archivo JSON
     file_put_contents($file, json_encode($productos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
-    // Redirigir de nuevo al formulario
     header('Location: ingresarDatos.php');
     exit();
 }
