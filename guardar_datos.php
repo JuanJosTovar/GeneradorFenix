@@ -2,20 +2,16 @@
 $file = 'productos.json';
 
 $productos = json_decode(file_get_contents($file), true);
-
-// Si no hay datos en el archivo, inicializar la estructura
 if (!$productos) {
     $productos = ["canastas" => []];
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Limpiar y sanitizar datos
     $canasta_id = strtoupper(preg_replace('/\s+/', '', trim($_POST['id_canasta'])));
-    $referencia = strtolower(preg_replace('/\s+/', '', trim($_POST['referencia'])));
-    $cantidad = preg_replace('/\s+/', '', intval($_POST['cantidad']));
-    $color = ucfirst(strtolower(trim($_POST['color'])));
+    $referencias = explode(',', $_POST['referencia']);  // Dividir las referencias por coma
+    $cantidades = array_map('intval', explode(',', $_POST['cantidad']));  // Convertir cantidades a enteros
+    $colores = explode(',', $_POST['color']);  // Dividir los colores por coma
 
-    // Verificar si la canasta existe, si no, crearla
     if (!isset($productos["canastas"][$canasta_id])) {
         $productos["canastas"][$canasta_id] = [
             "id" => $canasta_id,
@@ -23,16 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ];
     }
 
-    $existe = false;
-    foreach ($productos["canastas"][$canasta_id]["referencias"] as &$ref) {
-        if ($ref["referencia"] === $referencia && $ref["color"] === $color) {
-            $ref["cantidad"] += $cantidad;
-            $existe = true;
-            break;
-        }
-    }
+    // Asegurarse que el número de cantidades y colores sea el mismo que el número de referencias
+    $max_items = max(count($referencias), count($cantidades), count($colores));
 
-    if (!$existe) {
+    for ($i = 0; $i < $max_items; $i++) {
+        // Si no hay más colores o cantidades, usar los últimos valores disponibles
+        $cantidad = isset($cantidades[$i]) ? $cantidades[$i] : end($cantidades);
+        $color = isset($colores[$i]) ? ucfirst(strtolower(trim($colores[$i]))) : ucfirst(strtolower(end($colores)));
+
+        // Utilizamos la primera referencia, ya que es la misma para todas
+        $referencia = strtolower(trim($referencias[0]));
+
+        // Agregar la referencia con cantidad y color
         $productos["canastas"][$canasta_id]["referencias"][] = [
             "referencia" => $referencia,
             "cantidad" => $cantidad,
@@ -40,35 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ];
     }
 
+    // Guardar el archivo actualizado
     file_put_contents($file, json_encode($productos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
     header('Location: ingresarDatos.php');
     exit();
 }
-
-// Eliminar una referencia específica dentro de una canasta
-// if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['canasta_id']) && isset($_GET['referencia']) && isset($_GET['color'])) {
-//     $canasta_id = preg_replace('/\s+/', '', trim($_GET['canasta_id']));
-//     $referencia = preg_replace('/\s+/', '', trim($_GET['referencia']));
-//     $color = trim($_GET['color']); 
-
-//     // Verificar si la canasta existe
-//     if (isset($productos["canastas"][$canasta_id])) {
-//         foreach ($productos["canastas"][$canasta_id]["referencias"] as $index => $ref) {
-//             if ($ref["referencia"] === $referencia && $ref["color"] === $color) {
-//                 unset($productos["canastas"][$canasta_id]["referencias"][$index]);
-//                 break;
-//             }
-//         }
-//         // Reindexar el array después de eliminar
-//         $productos["canastas"][$canasta_id]["referencias"] = array_values($productos["canastas"][$canasta_id]["referencias"]);
-//     }
-
-//     // Guardar los cambios en el archivo JSON
-//     file_put_contents($file, json_encode($productos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
-//     // Redirigir de nuevo al formulario
-//     header('Location: ingresarDatos.php');
-//     exit();
-// }
 ?>

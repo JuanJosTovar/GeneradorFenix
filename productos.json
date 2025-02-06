@@ -47,22 +47,18 @@
                     "referencia": "pf988",
                     "cantidad": 1212,
                     "color": "Rojo"
+                },
+                {
+                    "referencia": "pf555",
+                    "cantidad": 60,
+                    "color": "Verde"
                 }
             ]
         },
         "B3-M1-CA-F1-P1": {
             "id": "B3-M1-CA-F1-P1",
             "referencias": [
-                {
-                    "referencia": "pf988",
-                    "cantidad": 123,
-                    "color": "Morado"
-                },
-                {
-                    "referencia": "pf555",
-                    "cantidad": 1212,
-                    "color": "Verde"
-                }
+                
             ]
         }
     }

@@ -126,3 +126,13 @@
     margin-top: 20px;
     font-size: 18px;
 }
+
+.consultar{
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 10px;
+    border: transparent;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    background-color: rgb(117, 117, 117);
+}

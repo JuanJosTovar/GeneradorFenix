@@ -26,13 +26,14 @@
                 </div>
                 <div>
                     <p for="cantidad">Cantidad</p>
-                    <input class="input-form" type="number" id="cantidad" name="cantidad" placeholder="Ejemplo: 2000" required>
+                    <input class="input-form" type="text" id="cantidad" name="cantidad" placeholder="Ejemplo: 2000" required>
                 </div>
                 <div>
                     <p for="color">Color (Opcional)</p>
                     <input class="input-form" type="text" id="color" name="color" placeholder="Ejemplo: Rojo">
                 </div>
                 <button class="guardar" type="submit" name="action" value="add">Guardar</button>
+                <button class="consultar" type="button" onclick="navigateTo('consultar.html')">Consultar Contenidos</button>
             </form>
         </section>
 
