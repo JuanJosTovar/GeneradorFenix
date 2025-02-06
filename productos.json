@@ -119,6 +119,21 @@
                     "color": "cafe"
                 }
             ]
+        },
+        "B1-M1-CI-F1-P4": {
+            "id": "B1-M1-CI-F1-P4",
+            "referencias": [
+                {
+                    "referencia": "pf101",
+                    "cantidad": 20,
+                    "color": "rojo"
+                },
+                {
+                    "referencia": "pf3050-1",
+                    "cantidad": 36,
+                    "color": "cafe"
+                }
+            ]
         }
     }
 }

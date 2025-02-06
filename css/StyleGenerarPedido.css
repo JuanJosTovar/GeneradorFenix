@@ -79,6 +79,7 @@ body.dark-mode #selectedBasketList div {
     -ms-user-select: none;
     font-size: 25px;
     margin-left: 10px;
+    s
 }
 
 body{
@@ -156,6 +157,7 @@ body{
   font-style: normal;
   font-variation-settings:
     "wdth" 80;
+    padding: 0%;
   }  
 
 
@@ -255,12 +257,16 @@ body{
     
 .Mapa2{
     background-color:#d6d4d471;
-    height: 13rem;
+    height: 41rem;
     width: 56rem;
-    display: flex;
-    justify-content: center;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px #0000001a;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   margin-bottom: 5rem;
+   margin-top: 1rem;
+   border-radius: 15px;
+   box-shadow: 0 2px 10px #0000001a;
 }
 .grid2{
     display: grid;
@@ -269,17 +275,18 @@ body{
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(24, 8px);
-    grid-template-rows: repeat(5, 8px);
+    grid-template-rows: repeat(18, 8px);
     gap: 28px;
+    margin-top: 2rem;
 }
 
 .Mapa3{
     background-color:#d6d4d471;
-    height: 13rem;
+    height: 41rem;
     width: 63rem;
     display: flex;
     justify-content: center;
-    margin-top: 5rem;
+    margin-top: 1rem;
     margin-left: 6.97rem;
     border-radius: 15px;
     box-shadow: 0 2px 10px #0000001a;
@@ -291,8 +298,9 @@ body{
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(27, 8px);
-    grid-template-rows: repeat(5, 8px);
+    grid-template-rows: repeat(18, 8px);
     gap: 28px;
+    margin-top: 2rem;
 }
 
 .cell {

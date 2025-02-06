@@ -160,7 +160,7 @@ function updateSelectedBasketList() {
 
     basketCounts.forEach(({ referencia, color, cantidad }) => {
         const basketItem = document.createElement('div');
-        basketItem.textContent = `Referencia: ${referencia} | Color: ${color} | Cantidad: ${cantidad}`;
+        basketItem.textContent = `Referencia: ${referencia}\nColor: ${color}\nCantidad: ${cantidad}`;
         selectedBasketList.appendChild(basketItem);
     });
 
