@@ -5,6 +5,7 @@ body {
     color: black;
     margin: 0%;
     padding: 0%;
+    background: url(/Imagenes/1.png);
 }
 
 #floatingDiv {
@@ -31,6 +32,7 @@ body.dark-mode #exportButton > span{
 body.dark-mode {
     background-color: #292929; /* Fondo oscuro */
     color: #000000; 
+    background: url(/Imagenes/Diseño\ sin\ título.png);
 }
 body.dark-mode #toggleFloatingDiv {
     background-color: #292929; /* Fondo oscuro */
@@ -40,7 +42,7 @@ body.dark-mode #toggleTheme{
     color: #b4b0b0;
 }
 body.dark-mode .search-head{
-    background: linear-gradient(#131313  0%, #292929 100%);
+    background: linear-gradient(#181818  0%, #272727 100%);
 }
 body.dark-mode #search{
     background-color: #363535;
@@ -144,7 +146,7 @@ body{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background: linear-gradient(#c9c9c9  0%,#f7f6f6 100%);
+    background: linear-gradient(#d8d7d7  0%,#f8f8f8 100%);
 }
 
 *{
@@ -334,16 +336,16 @@ body{
     transition: background-color 0.3s;
 }
 .cell:hover {
-    background-color: #bdb8b8;
+    background-color: #e2dede;
 }
 .cell2:hover {
-    background-color: #bdb8b8;
+    background-color: #e2dede;
 }
 .cell3:hover {
-    background-color: #bdb8b8;
+    background-color: #e2dede;
 }
 .cell4:hover {
-    background-color: #bdb8b8;
+    background-color: #e2dede;
 }
 .selected {
     background-color: #ffffff;

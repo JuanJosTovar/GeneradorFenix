@@ -1,5 +1,6 @@
 let juguetesData = {}; // Variable para los datos JSON cargados
 let selectedCells = new Set();
+let referenceDetails = new Map(); // Mapa para almacenar los detalles de las referencias
 
 document.getElementById('toggleTheme').onclick = function () {
     const body = document.body;
@@ -94,33 +95,78 @@ function hideInfoBox() {
     document.getElementById('infoBox').style.display = 'none';
 }
 
-function updateSelectedBasketList() {
-    const selectedBasketList = document.getElementById('selectedBasketList');
-    selectedBasketList.innerHTML = '';
+function updateFloatingDiv(references) {
+    const floatingDiv = document.getElementById('floatingDiv');
 
-    const searchValue = document.getElementById('search').value.trim().toLowerCase();
-    const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
+    floatingDiv.innerHTML = '';
+
+    referenceDetails.clear(); // Limpiar el mapa de detalles de referencias
 
     selectedCells.forEach(cellId => {
-        const canasta = juguetesData.canastas[cellId]; 
+        const canasta = juguetesData.canastas[cellId];
         if (canasta) {
-            const referenciasFiltradas = canasta.referencias.filter(ref => 
+            const referenciasFiltradas = canasta.referencias.filter(ref =>
                 references.includes(ref.referencia.toLowerCase())
             );
 
-            if (referenciasFiltradas.length > 0) {
-                const listItem = document.createElement('li');
-                
-                let detalles = `ID: ${canasta.id}\n`;
-                referenciasFiltradas.forEach(ref => {
-                    detalles +=` Referencia: ${ref.referencia}\nColor: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}\n`;
-                });
-
-                listItem.textContent = detalles;
-                selectedBasketList.appendChild(listItem);
-            }
+            referenciasFiltradas.forEach(ref => {
+                const key = `${ref.referencia.toLowerCase()}-${ref.color.toLowerCase()}`;
+                if (referenceDetails.has(key)) {
+                    referenceDetails.get(key).cantidad += ref.cantidad;
+                } else {
+                    referenceDetails.set(key, { cantidad: ref.cantidad, color: ref.color || 'N/A' });
+                }
+            });
         }
     });
+
+    if (referenceDetails.size > 0) {
+        referenceDetails.forEach(({ cantidad, color }, key) => {
+            const [reference, colorValue] = key.split('-');
+            const refDiv = document.createElement('div');
+            refDiv.textContent = `Referencia: ${reference}\nCantidad: ${cantidad}\nColor: ${colorValue}`;
+            floatingDiv.appendChild(refDiv);
+        });
+    } else {
+        floatingDiv.textContent = 'No se encontraron referencias coincidentes.';
+    }
+}
+
+function updateSelectedBasketList() {
+    const selectedBasketList = document.getElementById('selectedBasketList');
+    const searchValue = document.getElementById('search').value.trim().toLowerCase();
+    const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
+    selectedBasketList.innerHTML = '';
+
+    const basketCounts = new Map();
+
+    selectedCells.forEach(cellId => {
+        const canasta = juguetesData.canastas[cellId];
+        if (canasta) {
+            const referenciasFiltradas = canasta.referencias.filter(ref =>
+                references.includes(ref.referencia.toLowerCase())
+            );
+
+            referenciasFiltradas.forEach(ref => {
+                const key = `${ref.referencia.toLowerCase()}-${ref.color.toLowerCase()}`;
+                if (basketCounts.has(key)) {
+                    basketCounts.get(key).cantidad += ref.cantidad;
+                } else {
+                    basketCounts.set(key, { referencia: ref.referencia, color: ref.color, cantidad: ref.cantidad });
+                }
+            });
+        }
+    });
+
+    basketCounts.forEach(({ referencia, color, cantidad }) => {
+        const basketItem = document.createElement('div');
+        basketItem.textContent = `Referencia: ${referencia} | Color: ${color} | Cantidad: ${cantidad}`;
+        selectedBasketList.appendChild(basketItem);
+    });
+
+    if (selectedBasketList.children.length === 0) {
+        selectedBasketList.textContent = 'No hay canastas seleccionadas.';
+    }
 }
 
 // Función para exportar datos a Excel
