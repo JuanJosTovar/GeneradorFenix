@@ -1,0 +1,77 @@
+{
+    "pf101":{
+        "descripcion":"VOLQUETA 101 NUEVO"
+    },
+    "pf101pr":{
+        "descripcion":"VOLQUETA PALA Y RASTRILLO"
+    },
+    "pf101b":{
+        "descripcion":"VOLQUETA 101 CON BLOQUES"
+    },
+    "pf102":{
+        "descripcion":"ESTACA NUEVO"
+    },
+    "pf102b":{
+        "descripcion":"ESTACA BLOQUES"
+    },
+    "pf102j":{
+        "descripcion":"ESTACA JEEP"
+    },
+    "pf102f":{
+        "descripcion":"ESTACA FORMULA"
+    },
+    "pf102m":{
+        "descripcion":"ESTACA MILITAR"
+    },
+    "pf102p":{
+        "descripcion":"ESTACA PELOTA"
+    },
+    "pf102pg":{
+        "descripcion":"ESTACA MI PEQUE\u00F1O GIGANTE"
+    },
+    "pf104b":{
+        "descripcion":"TRACTOMULA EN BOLSA"
+    },
+    "pf104jf":{
+        "descripcion":"TRACTOMULA JEEP FORMULA"
+    },
+    "pf104pg":{
+        "descripcion":"TRACTOMULA MIS PEQUE\u00F1OS GIGANTES"
+    },
+    "pf106b":{
+        "descripcion":"GANADERITO EN BOLSA"
+    },
+    "pf107":{
+        "descripcion":"TRACTOMULA MADERERA"
+    },
+    "pf110":{
+        "descripcion":"VOLQUETA DE LUJO"
+    },
+    "pf110pr":{
+        "descripcion":"VOLQUETA DE LUJO PALA Y RASTRILLO"
+    },
+    "pf130":{
+        "descripcion":"ESCARABAJO"
+    },
+    "pf135":{
+        "descripcion":"ESCARABAJO SPORT"
+    },
+    "pf135b":{
+        "descripcion":"ESCARABAJO SPORT EN BOLSA"
+    },
+    "pf140":{
+        "descripcion":"ESCARABAJO X 3"
+    },
+    "pf145":{
+        "descripcion":"RACING X 3"
+    },
+    "pf150-1":{
+        "descripcion":"MIS PEQUEÑOS GIGANTES X 8 NI\u00F1O"
+    },
+    "pf150-2":{
+        "descripcion":"MIS PEQUEÑOS GIGANTES X 8 NI\u00F1A"
+    },
+    "pf150x2-1":{
+        "descripcion":"MIS PEQUEÑOS GIGANTES X 2 NI\u00F1O"
+    }
+}
