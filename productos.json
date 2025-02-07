@@ -42,6 +42,11 @@
                     "referencia": "pf233",
                     "cantidad": 40,
                     "color": ""
+                },
+                {
+                    "referencia": "pf3050-1",
+                    "cantidad": 36,
+                    "color": "cafe"
                 }
             ]
         },
@@ -52,6 +57,11 @@
                     "referencia": "pf555",
                     "cantidad": 6,
                     "color": "morado"
+                },
+                {
+                    "referencia": "pf3050-1",
+                    "cantidad": 36,
+                    "color": "cafe"
                 }
             ]
         },
@@ -77,6 +87,11 @@
                     "referencia": "pf032",
                     "cantidad": 60,
                     "color": ""
+                },
+                {
+                    "referencia": "pf3050-1",
+                    "cantidad": 36,
+                    "color": "cafe"
                 }
             ]
         },
@@ -97,12 +112,8 @@
                     "referencia": "pf101",
                     "cantidad": 20,
                     "color": "rojo"
-                },
-                {
-                    "referencia": "pf3050-1",
-                    "cantidad": 15,
-                    "color": "azul"
                 }
+        
             ]
         },
         "B3-M4-CD-F2-P2": {
@@ -112,12 +123,8 @@
                     "referencia": "pf101",
                     "cantidad": 20,
                     "color": "rojo"
-                },
-                {
-                    "referencia": "pf3050-1",
-                    "cantidad": 36,
-                    "color": "cafe"
                 }
+                
             ]
         },
         "B1-M1-CI-F1-P4": {
@@ -127,12 +134,8 @@
                     "referencia": "pf101",
                     "cantidad": 20,
                     "color": "rojo"
-                },
-                {
-                    "referencia": "pf3050-1",
-                    "cantidad": 36,
-                    "color": "cafe"
                 }
+                
             ]
         }
     }

@@ -17,28 +17,47 @@ document.getElementById('toggleTheme').onclick = function () {
 // Función para buscar coincidencias y resaltar celdas basadas en la referencia ingresada
 function highlightAndFindReference() {
     const searchValue = document.getElementById('search').value.trim().toLowerCase();
+    
+    // Limpiar selección anterior
     const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4');
+    allCells.forEach(cell => {
+        cell.classList.remove('selected', 'deselected');
+        cell.onmouseover = null;
+        cell.onmouseout = null;
+    });
+    selectedCells.clear();
 
     if (!juguetesData.canastas) return;
 
     const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
 
-    if (searchValue.length > 0) {
-        allCells.forEach(cell => {
-            cell.classList.remove('selected', 'deselected');
-            cell.onmouseover = null;
-            cell.onmouseout = null;
-        });
-        selectedCells.clear();
-    }
+    // Crear un objeto para almacenar las canastas encontradas por prioridad
+    const foundCanastas = {
+        cell: [],
+        cell2: [],
+        cell3: [],
+        cell4: []
+    };
 
-    // Iterar sobre el objeto `canastas`
-    const foundCanastas = Object.values(juguetesData.canastas).filter(canasta =>
-        canasta.referencias.some(ref => references.includes(ref.referencia.toLowerCase()))
-    );
+    // Iterar sobre el objeto `canastas` y clasificar las coincidencias
+    Object.values(juguetesData.canastas).forEach(canasta => {
+        const hasMatch = canasta.referencias.some(ref => references.includes(ref.referencia.toLowerCase()));
+        if (hasMatch) {
+            // Obtener el elemento del DOM correspondiente a la canasta
+            const cell = document.getElementById(canasta.id);
+            if (cell) {
+                // Clasificar según la clase del elemento
+                if (cell.classList.contains('cell')) foundCanastas.cell.push(canasta);
+                else if (cell.classList.contains('cell2')) foundCanastas.cell2.push(canasta);
+                else if (cell.classList.contains('cell3')) foundCanastas.cell3.push(canasta);
+                else if (cell.classList.contains('cell4')) foundCanastas.cell4.push(canasta);
+            }
+        }
+    });
 
-    if (foundCanastas.length > 0) {
-        foundCanastas.forEach(canasta => {
+    // Si hay coincidencias en la clase `cell`, solo mostrar esas
+    if (foundCanastas.cell.length > 0) {
+        foundCanastas.cell.forEach(canasta => {
             const cell = document.getElementById(canasta.id);
             if (cell) {
                 cell.classList.add('selected');
@@ -55,6 +74,28 @@ function highlightAndFindReference() {
                     toggleSelection(cell);
                 };
             }
+        });
+    } else {
+        // Si no hay coincidencias en `cell`, buscar en las demás clases
+        ['cell2', 'cell3', 'cell4'].forEach(className => {
+            foundCanastas[className].forEach(canasta => {
+                const cell = document.getElementById(canasta.id);
+                if (cell) {
+                    cell.classList.add('selected');
+                    selectedCells.add(canasta.id);
+
+                    cell.onmouseover = function(event) {
+                        const detalles = getDetalles(canasta, references);
+                        showInfoBox(event, detalles);
+                    };
+                    cell.onmouseout = function() {
+                        hideInfoBox();
+                    };
+                    cell.onclick = function() {
+                        toggleSelection(cell);
+                    };
+                }
+            });
         });
     }
 
@@ -97,7 +138,6 @@ function hideInfoBox() {
 
 function updateFloatingDiv(references) {
     const floatingDiv = document.getElementById('floatingDiv');
-
     floatingDiv.innerHTML = '';
 
     referenceDetails.clear(); // Limpiar el mapa de detalles de referencias
@@ -125,11 +165,30 @@ function updateFloatingDiv(references) {
             const [reference, colorValue] = key.split('-');
             const refDiv = document.createElement('div');
             refDiv.textContent = `Referencia: ${reference}\nCantidad: ${cantidad}\nColor: ${colorValue}`;
+            refDiv.style.cursor = 'pointer';
+            refDiv.onclick = function() {
+                highlightCanastas(reference); // Resaltar canastas al hacer clic
+            };
             floatingDiv.appendChild(refDiv);
         });
+        floatingDiv.style.display = 'block'; // Mostrar el div flotante
     } else {
         floatingDiv.textContent = 'No se encontraron referencias coincidentes.';
+        floatingDiv.style.display = 'block'; // Asegurarse de que se muestre incluso si no hay coincidencias
     }
+}
+
+function highlightCanastas(reference) {
+    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4');
+
+    allCells.forEach(cell => {
+        // Comprobar que el ID de la celda coincide con la referencia
+        if (cell.id === reference) {
+            cell.classList.toggle('highlight'); // Añadir o quitar la clase de resaltado
+        } else {
+            cell.classList.remove('highlight'); // Asegurarse de que otras celdas no estén resaltadas
+        }
+    });
 }
 
 function updateSelectedBasketList() {
