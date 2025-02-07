@@ -1,0 +1,14 @@
+{
+    "canastas": {
+        "B3-M1-CA-F1-P4": {
+            "id": "B3-M1-CA-F1-P4",
+            "referencias": [
+                {
+                    "referencia": "pf543",
+                    "cantidad": 120,
+                    "color": "rosado"
+                }
+            ]
+        }
+    }
+}

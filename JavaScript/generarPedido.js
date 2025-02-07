@@ -175,14 +175,13 @@ function exportToExcel() {
     const searchValue = document.getElementById('search').value.trim().toLowerCase();
     const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
 
-
     selectedCells.forEach(cellId => {
         const canasta = juguetesData.canastas[cellId];
         if (canasta) {
             const referenciasFiltradas = canasta.referencias.filter(ref => 
                 references.includes(ref.referencia.toLowerCase())
-            ); // Acceder directamente al objeto
-        if (canasta) {
+            );
+
             referenciasFiltradas.forEach(ref => {
                 selectedData.push({
                     ID: canasta.id,
@@ -192,19 +191,62 @@ function exportToExcel() {
                 });
             });
         }
-    
-}});
+    });
 
     if (selectedData.length === 0) {
         alert("No hay datos seleccionados para exportar.");
         return;
     }
 
+    // Crear y descargar el archivo Excel
     const ws = XLSX.utils.json_to_sheet(selectedData);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Canastas Seleccionadas");
     XLSX.writeFile(wb, "canastas_seleccionadas.xlsx");
+
+    // Enviar los datos al PHP
+    enviarPedido(selectedData);
 }
+
+function enviarPedido(data) {
+    fetch("http://localhost/GeneradorFenix/procesar_pedido.php", { 
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ canastas: convertirFormato(data) })
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert(result.mensaje);
+    })
+    .catch(error => {
+        console.error("Error al enviar datos al PHP:", error);
+    });
+}
+
+// Convertir el formato para que coincida con el JSON del PHP
+function convertirFormato(data) {
+    let resultado = {};
+
+    data.forEach(item => {
+        if (!resultado[item.ID]) {
+            resultado[item.ID] = {
+                id: item.ID,
+                referencias: []
+            };
+        }
+        resultado[item.ID].referencias.push({
+            referencia: item.Referencia,
+            cantidad: item.Cantidad,
+            color: item.Color
+        });
+    });
+
+    return resultado;
+}
+
+
 
 // Cargar datos del archivo JSON
 function loadJuguetesData() {
