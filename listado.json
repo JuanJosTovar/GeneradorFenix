@@ -1,0 +1,16 @@
+{
+    "canastas":[
+        {
+            "codigo":"401",
+            "nombre":"CONTENEDOR # 01",
+            "ubicacion":"B3-M1-CA-F1-P4",
+            "referencias":[
+                {
+                    "ref":"pf543",
+                    "cantidad":120,
+                    "color":"Verde"
+                }
+            ]
+        }
+    ]
+}

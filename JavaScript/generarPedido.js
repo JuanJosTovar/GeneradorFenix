@@ -17,94 +17,39 @@ document.getElementById('toggleTheme').onclick = function () {
 // Función para buscar coincidencias y resaltar celdas basadas en la referencia ingresada
 function highlightAndFindReference() {
     const searchValue = document.getElementById('search').value.trim().toLowerCase();
-    
-    // Limpiar selección anterior
-    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4');
-    allCells.forEach(cell => {
-        cell.classList.remove('selected', 'deselected');
-        cell.onmouseover = null;
-        cell.onmouseout = null;
-    });
-    selectedCells.clear();
-
     if (!juguetesData.canastas) return;
 
     const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
+    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4');
 
-    // Crear un objeto para almacenar las canastas encontradas por prioridad
-    const foundCanastas = {
-        cell: [],
-        cell2: [],
-        cell3: [],
-        cell4: []
-    };
+    if (searchValue.length > 0) {
+        allCells.forEach(cell => cell.classList.remove('selected', 'deselected'));
+        selectedCells.clear();
+    }
 
-    // Iterar sobre el objeto `canastas` y clasificar las coincidencias
-    Object.values(juguetesData.canastas).forEach(canasta => {
-        const hasMatch = canasta.referencias.some(ref => references.includes(ref.referencia.toLowerCase()));
+     juguetesData.canastas.forEach(canasta => {
+        const hasMatch = canasta.referencias.some(ref => references.includes(ref.ref.toLowerCase()));
+        canasta.referencias.forEach(ref => {
+            console.log(`🔎 Referencia: ${ref.ref} | Color: ${ref.color} | Cantidad: ${ref.cantidad}`);
+        });
         if (hasMatch) {
-            // Obtener el elemento del DOM correspondiente a la canasta
-            const cell = document.getElementById(canasta.id);
+            const cell = document.getElementById(canasta.ubicacion);
             if (cell) {
-                // Clasificar según la clase del elemento
-                if (cell.classList.contains('cell')) foundCanastas.cell.push(canasta);
-                else if (cell.classList.contains('cell2')) foundCanastas.cell2.push(canasta);
-                else if (cell.classList.contains('cell3')) foundCanastas.cell3.push(canasta);
-                else if (cell.classList.contains('cell4')) foundCanastas.cell4.push(canasta);
+                cell.classList.add('selected');
+                selectedCells.add(canasta.ubicacion);
+
+                cell.onmouseover = event => showInfoBox(event, getDetalles(canasta, references));
+                cell.onmouseout = hideInfoBox;
+                cell.onclick = () => toggleSelection(cell);
             }
         }
     });
-
-    // Si hay coincidencias en la clase `cell`, solo mostrar esas
-    if (foundCanastas.cell.length > 0) {
-        foundCanastas.cell.forEach(canasta => {
-            const cell = document.getElementById(canasta.id);
-            if (cell) {
-                cell.classList.add('selected');
-                selectedCells.add(canasta.id);
-
-                cell.onmouseover = function(event) {
-                    const detalles = getDetalles(canasta, references);
-                    showInfoBox(event, detalles);
-                };
-                cell.onmouseout = function() {
-                    hideInfoBox();
-                };
-                cell.onclick = function() {
-                    toggleSelection(cell);
-                };
-            }
-        });
-    } else {
-        // Si no hay coincidencias en `cell`, buscar en las demás clases
-        ['cell2', 'cell3', 'cell4'].forEach(className => {
-            foundCanastas[className].forEach(canasta => {
-                const cell = document.getElementById(canasta.id);
-                if (cell) {
-                    cell.classList.add('selected');
-                    selectedCells.add(canasta.id);
-
-                    cell.onmouseover = function(event) {
-                        const detalles = getDetalles(canasta, references);
-                        showInfoBox(event, detalles);
-                    };
-                    cell.onmouseout = function() {
-                        hideInfoBox();
-                    };
-                    cell.onclick = function() {
-                        toggleSelection(cell);
-                    };
-                }
-            });
-        });
-    }
 
     updateSelectedBasketList();
 }
 
 function toggleSelection(cell) {
     const cellId = cell.id;
-
     if (selectedCells.has(cellId)) {
         selectedCells.delete(cellId);
         cell.classList.remove('selected');
@@ -117,11 +62,14 @@ function toggleSelection(cell) {
     updateSelectedBasketList();
 }
 
+
 function getDetalles(canasta, references) {
     return canasta.referencias
-        .filter(ref => references.includes(ref.referencia.toLowerCase()))
-        .map(ref => `Referencia: ${ref.referencia}\n Color: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}`)
+        .filter(ref => references.includes(ref.ref.toLowerCase()))
+        .map(ref => `Referencia: ${ref.ref}\nColor: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}`)
+        .join("\n\n");
 }
+
 
 // Mostrar el cuadro de información
 function showInfoBox(event, detalles) {
@@ -200,20 +148,18 @@ function updateSelectedBasketList() {
     const basketCounts = new Map();
 
     selectedCells.forEach(cellId => {
-        const canasta = juguetesData.canastas[cellId];
+        const canasta = juguetesData.canastas.find(c => c.ubicacion === cellId);
         if (canasta) {
-            const referenciasFiltradas = canasta.referencias.filter(ref =>
-                references.includes(ref.referencia.toLowerCase())
-            );
-
-            referenciasFiltradas.forEach(ref => {
-                const key = `${ref.referencia.toLowerCase()}-${ref.color.toLowerCase()}`;
-                if (basketCounts.has(key)) {
-                    basketCounts.get(key).cantidad += ref.cantidad;
-                } else {
-                    basketCounts.set(key, { referencia: ref.referencia, color: ref.color, cantidad: ref.cantidad });
-                }
-            });
+            canasta.referencias
+                .filter(ref => references.includes(ref.ref.toLowerCase()))
+                .forEach(ref => {
+                    const key = `${ref.ref.toLowerCase()}-${ref.color.toLowerCase()}`;
+                    if (basketCounts.has(key)) {
+                        basketCounts.get(key).cantidad += ref.cantidad;
+                    } else {
+                        basketCounts.set(key, { referencia: ref.ref, color: ref.color, cantidad: ref.cantidad });
+                    }
+                });
         }
     });
 
@@ -234,25 +180,22 @@ function exportToExcel() {
     const searchValue = document.getElementById('search').value.trim().toLowerCase();
     const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
 
-
     selectedCells.forEach(cellId => {
-        const canasta = juguetesData.canastas[cellId];
+        const canasta = juguetesData.canastas.find(c => c.ubicacion === cellId);
         if (canasta) {
-            const referenciasFiltradas = canasta.referencias.filter(ref => 
-                references.includes(ref.referencia.toLowerCase())
-            ); // Acceder directamente al objeto
-        if (canasta) {
-            referenciasFiltradas.forEach(ref => {
-                selectedData.push({
-                    ID: canasta.id,
-                    Referencia: ref.referencia,
-                    Cantidad: ref.cantidad,
-                    Color: ref.color || 'N/A'
+            canasta.referencias
+                .filter(ref => references.includes(ref.ref.toLowerCase()))
+                .forEach(ref => {
+                    selectedData.push({
+                        Código: `${canasta.codigo} - ${canasta.nombre}`,
+                        Ubicación: canasta.ubicacion,
+                        Referencia: ref.ref,
+                        Cantidad: ref.cantidad,
+                        Color: ref.color || 'N/A'
+                    });
                 });
-            });
         }
-    
-}});
+    });
 
     if (selectedData.length === 0) {
         alert("No hay datos seleccionados para exportar.");
@@ -267,7 +210,7 @@ function exportToExcel() {
 
 // Cargar datos del archivo JSON
 function loadJuguetesData() {
-    fetch('../productos.json')
+    fetch('../listado.json')
         .then(response => {
             if (!response.ok) throw new Error(`Error al cargar JSON: ${response.status}`);
             return response.json();
