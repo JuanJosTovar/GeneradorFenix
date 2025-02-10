@@ -27,7 +27,7 @@
         "descripcion":"ESTACA PELOTA"
     },
     "pf102pg":{
-        "descripcion":"ESTACA MI PEQUE\u00F1O GIGANTE"
+        "descripcion":"ESTACA MI PEQUE\u00d1O GIGANTE"
     },
     "pf104b":{
         "descripcion":"TRACTOMULA EN BOLSA"
@@ -36,7 +36,7 @@
         "descripcion":"TRACTOMULA JEEP FORMULA"
     },
     "pf104pg":{
-        "descripcion":"TRACTOMULA MIS PEQUE\u00F1OS GIGANTES"
+        "descripcion":"TRACTOMULA MIS PEQUE\u00d1OS GIGANTES"
     },
     "pf106b":{
         "descripcion":"GANADERITO EN BOLSA"
@@ -66,12 +66,237 @@
         "descripcion":"RACING X 3"
     },
     "pf150-1":{
-        "descripcion":"MIS PEQUEÑOS GIGANTES X 8 NI\u00F1O"
+        "descripcion":"MIS PEQUE\u00d1OS GIGANTES X 8 NI\u00d1O"
     },
     "pf150-2":{
-        "descripcion":"MIS PEQUEÑOS GIGANTES X 8 NI\u00F1A"
+        "descripcion":"MIS PEQUE\u00d1OS GIGANTES X 8 NI\u00d1A"
     },
     "pf150x2-1":{
-        "descripcion":"MIS PEQUEÑOS GIGANTES X 2 NI\u00F1O"
+        "descripcion":"MIS PEQUE\u00d1OS GIGANTES X 2 NI\u00d1O"
+    },
+    "pf150x2-2":{
+        "descripcion":"MIS PEQUE\u00d1OS GIGANTES X 2 NI\u00d1A"
+    },
+    "pf151-1":{
+        "descripcion":"MIS PEQUE\u00d1OS GIGANTES X 1 NI\u00d1O"
+    },
+    "pf151-2":{
+        "descripcion":"MIS PEQUE\u00d1OS GIGANTES X 1 NI\u00d1A"
+    },
+    "pf155-1":{
+        "descripcion":"MIS PEQUE\u00d1OS GIGANTES X 4 NI\u00d1O"
+    },
+    "pf155-2":{
+        "descripcion":"MIS PEQUE\u00d1OS GIGANTES X 4 NI\u00d1A"
+    },
+    "pf205b":{
+        "descripcion":"JEEP SAHARA EN BOLSA"
+    },
+    "pf210":{
+        "descripcion":"GALAXIA EN BOLSA"
+    },
+    "pf215":{
+        "descripcion":"MIX TOYS"
+    },
+    "pf221":{
+        "descripcion":"FORMULA FENIX EN BOLSA"
+    },
+    "pf300n":{
+        "descripcion":"SUPER VOLQUETA LIMITED"
+    },
+    "pf300nb":{
+        "descripcion":"SUPER VOLQUETA LIMITED BALDE"
+    },
+    "pf300np":{
+        "descripcion":"SUPER VOLQUETA LIMITED PELOTA"
+    },
+    "pf400":{
+        "descripcion":"AVI\u00d3N JUMBO"
+    },
+    "pf450":{
+        "descripcion":"AVI\u00d3N MILITAR"
+    },
+    "pf460":{
+        "descripcion":"AVI\u00d3N POLIC\u00cdA"
+    },
+    "pf500":{
+        "descripcion":"CAMIONETA MONSTER TRUCK"
+    },
+    "pf500b":{
+        "descripcion":"CAMIONETA MONSTER CUBOS"
+    },
+    "pf550":{
+        "descripcion":"CHEVROLET VOLQUETA"
+    },
+    "pf550B":{
+        "descripcion":"CHEVROLET BLOQUES"
+    },
+    "pf550pr":{
+        "descripcion":"CHEVROLET PALA Y RASTRILLO"
+    },
+    "pf551":{
+        "descripcion":"CARGADOR"
+    },
+    "pf553":{
+        "descripcion":"BOMBERO"
+    },
+    "pf554":{
+        "descripcion":"GRUA MADERERA"
+    },
+    "pf560":{
+        "descripcion":"MEGA MONSTER"
+    },
+    "pf610":{
+        "descripcion":"SUZUKI"
+    },
+    "pf620":{
+        "descripcion":"FERRARI"
+    },
+    "pf640":{
+        "descripcion":"BUS PANAMERICANO"
+    },
+    "pf715":{
+        "descripcion":"RECOLECTOR DE BASURA"
+    },
+    "pf720":{
+        "descripcion":"MI VOLQUETA CONSTRUCTORA BLOQUES"
+    },
+    "pf725":{
+        "descripcion":"MI VOLQUETA CONSTRUCTORA"
+    },
+    "pf730":{
+        "descripcion":"MI MEZCLADOR"
+    },
+    "pf825":{
+        "descripcion":"VAMOS DE PICNIC"
+    },
+    "pf830":{
+        "descripcion":"CARRITO DE MERCADO"
+    },
+    "pf835":{
+        "descripcion":"COCHE OSITO"
+    },
+    "pf835c":{
+        "descripcion":"COCHE OSITO CAJA"
+    },
+    "pf840":{
+        "descripcion":"COCINA SOBRE RUEDAS"
+    },
+    "pf850":{
+        "descripcion":"CUNA PRINCESA"
+    },
+    "pf855":{
+        "descripcion":"BUTACO COCINA"
+    },
+    "pf861":{
+        "descripcion":"MY LITTLE KITCHEN CHEFF"
+    },
+    "pf860":{
+        "descripcion":"COCINA (MY LITTLE KITCHEN) NI\u00d1A"
+    },
+    "pf870":{
+        "descripcion":"MI TOCADOR"
+    },
+    "pf890-1":{
+        "descripcion":"VAGON BTOYS BLOCKS NI\u00d1O"
+    },
+    "pf890-2":{
+        "descripcion":"VAGON BTOYS BLOCKS NI\u00d1A"
+    },
+    "pf900-1":{
+        "descripcion":"VOLQUETA GODZILLA EN BOLSA"
+    },
+    "pf900r":{
+        "descripcion":"VOLQUETA GODZILLA RECICLADA"
+    },
+    "pf902":{
+        "descripcion":"CAMINADOR GODZILLA NUEVO"
+    },
+    "pf905-1":{
+        "descripcion":"BAMBAM CON SONIDO NI\u00d1O"
+    },
+    "pf905-2":{
+        "descripcion":"BAMBAM CON SONIDO NI\u00d1A"
+    },
+    "pf906":{
+        "descripcion":"BAMBAM CBT PALA Y PALIN"
+    },
+    "pf910-1":{
+        "descripcion":"FORMULA NI\u00d1O"
+    },
+    "pf910-2":{
+        "descripcion":"FORMULA NI\u00d1A"
+    },
+    "pf915":{
+        "descripcion":"VOLQUETA MONTABLE"
+    },
+    "pf920":{
+        "descripcion":"GODZILLITA"
+    },
+    "pf930-1":{
+        "descripcion":"JEEP MONTABLE NI\u00d1O"
+    },
+    "pf930-2":{
+        "descripcion":"JEEP MONTABLE NI\u00d1A"
+    },
+    "pf930c-1":{
+        "descripcion":"JEEP FULL EDITION NI\u00d1O"
+    },
+    "pf930c-2":{
+        "descripcion":"JEEP FULL EDITION NI\u00d1A"
+    },
+    "pf932":{
+        "descripcion":"JEEP JUNGLA"
+    },
+    "pf934":{
+        "descripcion":"JEEP SAFARI"
+    },
+    "pf936":{
+        "descripcion":"JEEP CBT FULL EDITION"
+    },
+    "pf938":{
+        "descripcion":"JEEP FULL EDITION COLOMBIA"
+    },
+    "pf940-1":{
+        "descripcion":"MUSCLE CAR NI\u00d1O"
+    },
+    "pf940-2":{
+        "descripcion":"MUSCLE CAR NI\u00d1A"
+    },
+    "pf947-1":{
+        "descripcion":"CUATRIMOTO NI\u00d1O"
+    },
+    "pf947-2":{
+        "descripcion":"CUATRIMOTO NI\u00d1A"
+    },
+    "pf950-1":{
+        "descripcion":"MI PRIMER MONTABLE NI\u00d1O"
+    },
+    "pf950b-1":{
+        "descripcion":"MI PRIMER MONTABLE BOMBERO"
+    },
+    "pf950-2":{
+        "descripcion":"MI PRIMER MONTABLE PRINCESA"
+    },
+    "pf960-1":{
+        "descripcion":"BOY TOYS TRUCK NI\u00d1O"
+    },
+    "pf960-2":{
+        "descripcion":"BOY TOYS TRUCK NI\u00d1A"
+    },
+    "pf965":{
+        "descripcion":"VOLQUETA ELITE"
+    },
+    "pf1500-1":{
+        "descripcion":"TRICICLO VOLCO NI\u00d1O"
+    },
+    "pf1500-2":{
+        "descripcion":"TRICICLO VOLCO NI\u00d1A"
+    },
+    "pf1505-1":{
+        "descripcion":"TRICICLO BALANCIN NI\u00d1O"
+    },
+    "pf1505-2":{
+        "descripcion":"TRICICLO BALANCIN NI\u00d1A"
     }
 }
