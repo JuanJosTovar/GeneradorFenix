@@ -82,7 +82,7 @@ function hideInfoBox() {
 
 // Cargar datos del archivo JSON
 function loadJuguetesData() {
-    fetch('../productos.json')
+    fetch('../listado.json')
         .then(response => {
             if (!response.ok) throw new Error(`Error al cargar JSON: ${response.status}`);
             return response.json();

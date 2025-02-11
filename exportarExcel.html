@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Excel</title>
+</head>
+<body>
+    <h2>Subir Archivo Excel</h2>
+    <form action="procesar_excel.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="archivo_excel" accept=".xlsx, .xls" required>
+        <button type="submit">Subir y Procesar</button>
+    </form>
+</body>
+</html>

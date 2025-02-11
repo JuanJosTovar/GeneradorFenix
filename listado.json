@@ -1,0 +1,40 @@
+{
+    "canastas": [
+        {
+            "codigo": "401",
+            "nombre": "CONTENEDOR # 01",
+            "ubicacion": "B3-M1-CA-F1-P4",
+            "referencias": [
+                {
+                    "ref": "pf543",
+                    "cantidad": 120,
+                    "color": "Verde"
+                }
+            ]
+        },
+        {
+            "codigo": "402",
+            "nombre": "CONTENEDOR # 02",
+            "ubicacion": "B3-M1-CA-F1-P3",
+            "referencias": [
+                {
+                    "ref": "pf543",
+                    "cantidad": 32,
+                    "color": "Verde"
+                }
+            ]
+        },
+        {
+            "codigo": "403",
+            "nombre": "CONTENEDOR # 03",
+            "ubicacion": "B3-M1-CA-F1-P2",
+            "referencias": [
+                {
+                    "ref": "pf955-1",
+                    "cantidad": 65,
+                    "color": "Azul"
+                }
+            ]
+        }
+    ]
+}
