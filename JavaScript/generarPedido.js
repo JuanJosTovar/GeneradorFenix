@@ -21,7 +21,7 @@ function highlightAndFindReference() {
     // Limpiar selección anterior
     const allCells = document.querySelectorAll('.cell4, .cell3, .cell2, .cell');
     allCells.forEach(cell => {
-        cell.classList.remove('selected', 'deselected');
+        cell.classList.remove('selected', 'deselected', 'highlight');
         cell.onmouseover = null;
         cell.onmouseout = null;
     });
@@ -33,59 +33,48 @@ function highlightAndFindReference() {
 
     // Crear un objeto para almacenar las canastas encontradas por prioridad
     const foundCanastas = {
-        cell: [],
-        cell2: [],
+        cell4: [],
         cell3: [],
-        cell4: []
+        cell2: [],
+        cell: []
     };
 
     // Iterar sobre el objeto `canastas` y clasificar las coincidencias
     Object.values(juguetesData.canastas).forEach(canasta => {
-        const hasMatch = canasta.referencias.some(ref => references.includes(ref.ref.toLowerCase()));
-        if (hasMatch) {
-            // Obtener el elemento del DOM correspondiente a la canasta
-            const cell = document.getElementById(canasta.ubicacion);
-            if (cell) {
-                // Clasificar según la clase del elemento
-                if (cell.classList.contains('cell4')) foundCanastas.cell4.push(canasta);
-                else if (cell.classList.contains('cell3')) foundCanastas.cell3.push(canasta);
-                else if (cell.classList.contains('cell2')) foundCanastas.cell2.push(canasta);
-                else if (cell.classList.contains('cell')) foundCanastas.cell.push(canasta);
-            }
-        }
-    });
-
-    // Si hay coincidencias en la clase `cell`, solo mostrar esas
-    if (foundCanastas.cell4.length > 0) {
-        foundCanastas.cell4.forEach(canasta => {
-            const cell = document.getElementById(canasta.ubicacion);
-            if (cell) {
-                cell.classList.add('selected');
-                selectedCells.add(canasta.ubicacion);
-                
-                cell.onmouseover = function(event) {
-                    const detalles = getDetalles(canasta, references);
-                    showInfoBox(event, detalles);
-                };
-                cell.onmouseout = function() {
-                    hideInfoBox();
-                };
-                cell.onclick = function() {
-                    toggleSelection(cell);
-                };
-            }
-        });
-    } else {
-        // Si no hay coincidencias en `cell`, buscar en las demás clases
-        ['cell3', 'cell2', 'cell'].forEach(className => {
-            foundCanastas[className].forEach(canasta => {
+        references.forEach(ref => {
+            const hasMatch = canasta.referencias.some(reference => reference.ref.toLowerCase() === ref);
+            if (hasMatch) {
+                // Obtener el elemento del DOM correspondiente a la canasta
                 const cell = document.getElementById(canasta.ubicacion);
                 if (cell) {
-                    cell.classList.add('selected');
-                    selectedCells.add(canasta.ubicacion);
+                    // Clasificar según la clase del elemento
+                    if (cell.classList.contains('cell4')) foundCanastas.cell4.push(canasta);
+                    else if (cell.classList.contains('cell3')) foundCanastas.cell3.push(canasta);
+                    else if (cell.classList.contains('cell2')) foundCanastas.cell2.push(canasta);
+                    else if (cell.classList.contains('cell')) foundCanastas.cell.push(canasta);
+                }
+            }
+        });
+    });
 
+    // Resaltar canastas según la prioridad
+    const priorityOrder = ['cell4', 'cell3', 'cell2', 'cell'];
+    references.forEach(ref => {
+        let found = false; // Para verificar si ya se encontró la referencia en una clase de mayor prioridad
+        priorityOrder.forEach(className => {
+            const canastaFound = foundCanastas[className].find(canasta => 
+                canasta.referencias.some(reference => reference.ref.toLowerCase() === ref)
+            );
+            if (canastaFound && !found) {
+                const cell = document.getElementById(canastaFound.ubicacion);
+                if (cell) {
+                    cell.classList.add('selected');
+                    selectedCells.add(canastaFound.ubicacion);
+                    found = true; // Marcar que ya se encontró la referencia en una clase de mayor prioridad
+
+                    // Configurar eventos de mouse
                     cell.onmouseover = function(event) {
-                        const detalles = getDetalles(canasta, references);
+                        const detalles = getDetalles(canastaFound, references);
                         showInfoBox(event, detalles);
                     };
                     cell.onmouseout = function() {
@@ -95,9 +84,9 @@ function highlightAndFindReference() {
                         toggleSelection(cell);
                     };
                 }
-            });
+            }
         });
-    }
+    });
 
     updateSelectedBasketList();
 }

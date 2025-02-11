@@ -3,6 +3,30 @@
         {
             "codigo":"401",
             "nombre":"CONTENEDOR # 01",
+            "ubicacion":"B3-M1-CB-F1-P4",
+            "referencias":[
+                {
+                    "ref":"pf543",
+                    "cantidad":120,
+                    "color":"Verde"
+                }
+            ]
+        },
+        {
+            "codigo":"402",
+            "nombre":"CONTENEDOR # 01",
+            "ubicacion":"B3-M1-CD-F3-P4",
+            "referencias":[
+                {
+                    "ref":"pf555",
+                    "cantidad":120,
+                    "color":"Verde"
+                }
+            ]
+        }, 
+        {
+            "codigo":"403",
+            "nombre":"CONTENEDOR # 01",
             "ubicacion":"B3-M1-CA-F1-P4",
             "referencias":[
                 {

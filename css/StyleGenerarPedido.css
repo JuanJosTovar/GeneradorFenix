@@ -82,9 +82,7 @@ body.dark-mode #selectedBasketList div {
     -webkit-transform:scale(1.3);transform:scale(1.3);
     overflow:hidden;
 }
-.highlight {
-    background-color: yellow;
-}
+
 body{
     display: flex;
     justify-content: center;
@@ -364,6 +362,10 @@ body{
 }
 .deselected {
     background-color: #b1b0b0;
+}
+.yellow {
+    background-color: #4b4301; /* Amarillo para celdas resaltadas */
+    color: black; /* Texto negro */
 }
 
 .cell.highlighted,
