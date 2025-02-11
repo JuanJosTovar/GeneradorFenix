@@ -499,5 +499,77 @@
     },
     "pf4000-2":{
         "descripcion":"MESA-BALANCIN NI\u00d1A"
+    },
+    "pf4020-1":{
+        "descripcion":"ESCRITORIO PUPITRE NI\u00d1O"
+    },
+    "pf4020-2":{
+        "descripcion":"ESCRITORIO PUPITRE NI\u00d1A"
+    },
+    "pf4050-1":{
+        "descripcion":"MESA INFANTIL NI\u00d1O"
+    },
+    "pf4050-2":{
+        "descripcion":"MESA INFANTIL NI\u00d1A"
+    },
+    "pf4100-1":{
+        "descripcion":"BA\u00daL NI\u00d1O"
+    },
+    "pf4100-2":{
+        "descripcion":"BA\u00daL NI\u00d1A"
+    },
+    "pf4170-1":{
+        "descripcion":"DULCE HOGAR NI\u00d1O - SWEET HOME"
+    },
+    "pf4170-2":{
+        "descripcion":"DULCE HOGAR NI\u00d1A - SWEET HOME"
+    },
+    "pf4180-1":{
+        "descripcion":"MI CASA DE LOS SUE\u00d1OS NI\u00d1O - MY DREAM HOUSE"
+    },
+    "pf4180-2":{
+        "descripcion":"MI CASA DE LOS SUE\u00d1OS NI\u00d1A - MY DREAM HOUSE"
+    },
+    "pf4150-1":{
+        "descripcion":"CAMA NI\u00d1O"
+    },
+    "pf4150-2":{
+        "descripcion":"CAMA NI\u00d1A"
+    },
+    "pf4200-1":{
+        "descripcion":"DESLIZADERO NI\u00d1O"
+    },
+    "pf4200-2":{
+        "descripcion":"DESLIZADERO NI\u00d1A"
+    },
+    "pf4300-1":{
+        "descripcion":"MI BUTACO NI\u00d1O"
+    },
+    "pf4300-2":{
+        "descripcion":"MI BUTACO NI\u00d1A"
+    },
+    "pf4350-1":{
+        "descripcion":"SILLA METALICA NI\u00d1O"
+    },
+    "pf4350-2":{
+        "descripcion":"SILLA METALICA NI\u00d1A"
+    },
+    "pf4355-1":{
+        "descripcion":"SILLA ESCRITORIO NI\u00d1O"
+    },
+    "pf4355-2":{
+        "descripcion":"SILLA ESCRITORIO NI\u00d1A"
+    },
+    "pf4360-1":{
+        "descripcion":"TRONO MI PRINCIPE"
+    },
+    "pf4360-2":{
+        "descripcion":"TRONO MI PRINCESA"
+    },
+    "pf4370-1":{
+        "descripcion":"BUTACO OSITO 2 EN 1 NI\u00d1O"
+    },
+    "pf4370-2":{
+        "descripcion":"BUTACO OSITO 2 EN 1 NI\u00d1A"
     }
 }
