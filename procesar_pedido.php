@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 // Ruta del archivo JSON donde se almacenan las canastas
-$jsonFile = "productos.json";
+$jsonFile = "listado.json";
 
 // Verificar si el archivo JSON existe, si no, crearlo
 if (!file_exists($jsonFile)) {
@@ -28,24 +28,29 @@ $data = json_decode($input, true);
 
 // Verificar que se recibió un JSON válido
 if (!isset($data["canastas"]) || !is_array($data["canastas"])) {
-    echo json_encode(["error" => "Formato incorrecto, se esperaba un objeto de canastas"]);
+    echo json_encode(["error" => "Formato incorrecto, se esperaba un array de canastas"]);
     exit;
 }
 
 // Procesar las canastas y actualizar el JSON
-foreach ($data["canastas"] as $idCanasta => $canasta) {
-    if (isset($jsonData["canastas"][$idCanasta])) { // Verifica si la canasta existe en el JSON
-        foreach ($canasta["referencias"] as $referencia) {
-            $ref = $referencia["referencia"];
-            $cantidad = $referencia["cantidad"];
-            $color = isset($referencia["color"]) ? $referencia["color"] : null; // Puede no existir
-
-            // Buscar en el JSON y actualizar la cantidad
-            foreach ($jsonData["canastas"][$idCanasta]["referencias"] as &$jsonRef) {
-                if ($jsonRef["referencia"] == $ref && ($jsonRef["color"] == $color || !isset($jsonRef["color"]))) {
-                    $jsonRef["cantidad"] -= $cantidad; // Restar la cantidad
-                    if ($jsonRef["cantidad"] < 0) {
-                        $jsonRef["cantidad"] = 0; // Evitar números negativos
+foreach ($data["canastas"] as $canasta) {
+    $codigoCanasta = $canasta["codigo"];
+    
+    // Buscar la canasta en el JSON existente
+    foreach ($jsonData["canastas"] as &$jsonCanasta) {
+        if ($jsonCanasta["codigo"] === $codigoCanasta) {
+            foreach ($canasta["referencias"] as $referencia) {
+                $ref = $referencia["ref"];
+                $cantidad = $referencia["cantidad"];
+                $color = isset($referencia["color"]) ? $referencia["color"] : null;
+                
+                // Buscar la referencia dentro de la canasta y actualizar la cantidad
+                foreach ($jsonCanasta["referencias"] as &$jsonRef) {
+                    if ($jsonRef["ref"] === $ref && ($jsonRef["color"] === $color || !isset($jsonRef["color"]))) {
+                        $jsonRef["cantidad"] -= $cantidad;
+                        if ($jsonRef["cantidad"] < 0) {
+                            $jsonRef["cantidad"] = 0; // Evitar números negativos
+                        }
                     }
                 }
             }
@@ -57,5 +62,5 @@ foreach ($data["canastas"] as $idCanasta => $canasta) {
 file_put_contents($jsonFile, json_encode($jsonData, JSON_PRETTY_PRINT));
 
 // Responder al frontend
-echo json_encode(["mensaje" => "Stock actualizado en productos.json correctamente"]);
+echo json_encode(["mensaje" => "Stock actualizado en listado.json correctamente"]);
 ?>
