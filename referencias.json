@@ -298,5 +298,206 @@
     },
     "pf1505-2":{
         "descripcion":"TRICICLO BALANCIN NI\u00d1A"
+    },
+    "pf1510-1":{
+        "descripcion":"CORRESPASILLO NI\u00d1O"
+    },
+    "pf1510-2":{
+        "descripcion":"CORREPASILLO NI\u00d1A"
+    },
+    "pf1520-1":{
+        "descripcion":"TRICICLO MONSTER NI\u00d1O"
+    },
+    "pf1520-2":{
+        "descripcion":"TRICICLO MONSTER NI\u00d1A"
+    },
+    "pf1520r":{
+        "descripcion":"TRICICLO MONSTER RECICLADO"
+    },
+    "pf1525-1":{
+        "descripcion":"TRICICLO MONSTER PREMIUM NI\u00d1O"
+    },
+    "pf1525-2":{
+        "descripcion":"TRICICLO MONSTER PREMIUM NI\u00d1A"
+    },
+    "pf1530-1":{
+        "descripcion":"TRICICLO SOPLADO NI\u00d1O"
+    },
+    "pf1530-2":{
+        "descripcion":"TRICICLO SOPLADO NI\u00d1A"
+    },
+    "pf1530r":{
+        "descripcion":"TRICICLO SOPLADO RECICLADO"
+    },
+    "pf1540-1":{
+        "descripcion":"TRICICLO DESTROYER NI\u00d1O"
+    },
+    "pf1540-2":{
+        "descripcion":"TRICICLO DESTROYER NI\u00d1A"
+    },
+    "pf1550-1":{
+        "descripcion":"TRICICLO METALICO NI\u00d1O"
+    },
+    "pf1550-2":{
+        "descripcion":"TRICICLO METALICO NI\u00d1A"
+    },
+    "pf2550":{
+        "descripcion":"BA\u00d1ERA CON MU\u00d1ECO"
+    },
+    "pf3020-1":{
+        "descripcion":"ARMATODO X48 NI\u00d1O"
+    },
+    "pf3020-2":{
+        "descripcion":"ARMATODO X48 NI\u00d1A"
+    },
+    "pf3022-1":{
+        "descripcion":"ARMATODO X72 NI\u00d1O"
+    },
+    "pf3022-2":{
+        "descripcion":"ARMATODO X72 NI\u00d1A"
+    },
+    "pf3024-1":{
+        "descripcion":"ARMATODO X144 NI\u00d1O"
+    },
+    "pf3024-2":{
+        "descripcion":"ARMATODO X144 NI\u00d1A"
+    },
+    "pf3026-1":{
+        "descripcion":"BOLA DIDACTICA NI\u00d1O"
+    },
+    "pf3026-2":{
+        "descripcion":"BOLA DIDACTICA NI\u00d1A"
+    },
+    "pf3028-1":{
+        "descripcion":"DINOSAURIO AROS NI\u00d1O"
+    },
+    "pf3028-2":{
+        "descripcion":"DINOSAURIO AROS NI\u00d1A"
+    },
+    "pf3030-1":{
+        "descripcion":"ELEFANTES AROS NI\u00d1O"
+    },
+    "pf3030-2":{
+        "descripcion":"ELEFANTES AROS NI\u00d1A"
+    },
+    "pf3035":{
+        "descripcion":"L\u00c1MPARA VACA"
+    },
+    "pf3500":{
+        "descripcion":"4 EN LINEA"
+    },
+    "pf3505-1":{
+        "descripcion":"BOLOS SOBRE RUEDAS NI\u00d1O"
+    },
+    "pf3505-2":{
+        "descripcion":"BOLOS SOBRE RUEDAS NI\u00d1A"
+    },
+    "pf3510-1":{
+        "descripcion":"JUEGO BOLOS NI\u00d1O"
+    },
+    "pf3510-2":{
+        "descripcion":"JUEGO BOLOS NI\u00d1A"
+    },
+    "pf3515":{
+        "descripcion":"BOYA 180 mm X 142 mm"
+    },
+    "pf3520-1":{
+        "descripcion":"JUEGO DE GOLF NI\u00d1O"
+    },
+    "pf3520-2":{
+        "descripcion":"JUEGO DE GOLF NI\u00d1A"
+    },
+    "pf3525-1":{
+        "descripcion":"MI EQUIPO DE GOLF NI\u00d1O"
+    },
+    "pf3525-2":{
+        "descripcion":"MI EQUIPO DE GOLF NI\u00d1A"
+    },
+    "pf3530":{
+        "descripcion":"JUEGO DE SAPO"
+    },
+    "pf3535":{
+        "descripcion":"SAPITO AHORRADOR"
+    },
+    "pf3540-1":{
+        "descripcion":"BATE TOYS NI\u00d1O"
+    },
+    "pf3540-2":{
+        "descripcion":"BATE TOYS NI\u00d1A"
+    },
+    "pf3545":{
+        "descripcion":"SET MEDIEVAL"
+    },
+    "pf3550":{
+        "descripcion":"LOTER\u00cdA APRENDE INGLES"
+    },
+    "pf3560":{
+        "descripcion":"¿DONDE HABITAN LOS ANIMALES"
+    },
+    "pf3570":{
+        "descripcion":"LOTER\u00cdA ARITMETICA"
+    },
+    "pf3580":{
+        "descripcion":"LOTER\u00cdA PROFESIONES"
+    },
+    "pf3590":{
+        "descripcion":"LOTER\u00cdA ABECEDARIO"
+    },
+    "pf3600":{
+        "descripcion":"LOTER\u00cdA LAS CIUDADES"
+    },
+    "pf3620":{
+        "descripcion":"CONTANDO Y JUGANDO"
+    },
+    "pf3630":{
+        "descripcion":"LAS VOCALES"
+    },
+    "pf3640":{
+        "descripcion":"DOMIN\u00d3 INFANTIL"
+    },
+    "pf3650":{
+        "descripcion":"SUMANDO Y RESTANDO"
+    },
+    "pf3800":{
+        "descripcion":"SOLDADOS X 50"
+    },
+    "pf3810":{
+        "descripcion":"PIRATAS X 50"
+    },
+    "pf3900":{
+        "descripcion":"MONOPATIN NI\u00d1O"
+    },
+    "pf3900-2":{
+        "descripcion":"MONOPATIN NI\u00d1A"
+    },
+    "pf3940-1":{
+        "descripcion":"THREE WHEELER SPORT NI\u00d1O"
+    },
+    "pf3940-2":{
+        "descripcion":"THREE WHEELER SPORT NI\u00d1A"
+    },
+    "pf3950-1":{
+        "descripcion":"SCOOTER NI\u00d1O"
+    },
+    "pf3950-2":{
+        "descripcion":"SCOOTER NI\u00d1A"
+    },
+    "pf3990-1":{
+        "descripcion":"PESAS BOY TOYS FIT HOMBRE"
+    },
+    "pf3990-2":{
+        "descripcion":"PESAS BOY TOYS FIT MUJER"
+    },
+    "pf3995-1":{
+        "descripcion":"MANCUERNA RUSA HOMBRE"
+    },
+    "pf3995-2":{
+        "descripcion":"MANCUERNA RUSA MUJER"
+    },
+    "pf4000-1":{
+        "descripcion":"MESA-BALANCIN NI\u00d1O"
+    },
+    "pf4000-2":{
+        "descripcion":"MESA-BALANCIN NI\u00d1A"
     }
 }
