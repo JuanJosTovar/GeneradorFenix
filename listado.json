@@ -35,6 +35,18 @@
                     "color":"Verde"
                 }
             ]
+        },
+        {
+            "codigo":"403",
+            "nombre":"CONTENEDOR # 01",
+            "ubicacion":"B3-M4-CC-F2-P2",
+            "referencias":[
+                {
+                    "ref":"pf560",
+                    "cantidad":120,
+                    "color":"Verde"
+                }
+            ]
         }
     ]
 }

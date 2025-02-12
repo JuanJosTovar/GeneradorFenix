@@ -29,7 +29,7 @@ function highlightAndFindReference() {
 
     if (!juguetesData.canastas) return;
 
-    const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
+    const references = searchValue.split('\n').map(ref => ref.trim()).filter(ref => ref.length > 0);
 
     // Crear un objeto para almacenar las canastas encontradas por prioridad
     const foundCanastas = {
@@ -69,7 +69,7 @@ function highlightAndFindReference() {
                 const cell = document.getElementById(canastaFound.ubicacion);
                 if (cell) {
                     cell.classList.add('selected');
-                    selectedCells.add(canastaFound.ubicacion);
+                    selectedCells.add(canastaFound.ubicacion); // Agregar a selectedCells
                     found = true; // Marcar que ya se encontró la referencia en una clase de mayor prioridad
 
                     // Configurar eventos de mouse
@@ -97,14 +97,16 @@ function toggleSelection(cell) {
         selectedCells.delete(cellId);
         cell.classList.remove('selected');
         cell.classList.add('deselected');
+        
     } else {
         selectedCells.add(cellId);
         cell.classList.add('selected');
         cell.classList.remove('deselected');
+        
     }
     updateSelectedBasketList();
+  
 }
-
 
 function getDetalles(canasta, references) {
     return canasta.referencias
@@ -185,7 +187,7 @@ function highlightCanastas(reference) {
 function updateSelectedBasketList() {
     const selectedBasketList = document.getElementById('selectedBasketList');
     const searchValue = document.getElementById('search').value.trim().toLowerCase();
-    const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
+    const references = searchValue.split('\n').map(ref => ref.trim()).filter(ref => ref.length > 0);
     selectedBasketList.innerHTML = '';
 
     const basketCounts = new Map();
@@ -205,7 +207,7 @@ function updateSelectedBasketList() {
                 });
         }
     });
-
+console.log(selectedCells)
     basketCounts.forEach(({ referencia, color, cantidad }) => {
         const basketItem = document.createElement('div');
         basketItem.textContent = `Referencia: ${referencia}\nColor: ${color}\nCantidad: ${cantidad}`;
