@@ -571,5 +571,191 @@
     },
     "pf4370-2":{
         "descripcion":"BUTACO OSITO 2 EN 1 NI\u00d1A"
+    },
+    "pf4500-1":{
+        "descripcion":"CARRETA NI\u00d1O"
+    },
+    "pf4505":{
+        "descripcion":"PALA Y RASTRILLO"
+    },
+    "pf4510":{
+        "descripcion":"BALDE PLAYERO PALA Y RASTRILLO"
+    },
+    "pf4515":{
+        "descripcion":"BALDE PLAYERO"
+    },
+    "pf4516":{
+        "descripcion":"VASO TAPA 18 ONZAS"
+    },
+    "pf4520":{
+        "descripcion":"PELOTA PAQUETE X 50"
+    },
+    "pf4530":{
+        "descripcion":"BALDE AGARRADERA GIRATORIA"
+    },
+    "pf4535":{
+        "descripcion":"CESTA MULTIUSOS 65.2 LTOS 1 WHR"
+    },
+    "pf4700":{
+        "descripcion":"HALLOWEEN SOBRE RUEDAS"
+    },
+    "at0001":{
+        "descripcion":"ALCANC\u00cdA MAFALDA"
+    },
+    "at0004":{
+        "descripcion":"ALCANC\u00cdA VACA PEQUE\u00d1A"
+    },
+    "at0006":{
+        "descripcion":"ALCANC\u00cdA VACA GRANDE"
+    },
+    "at0007":{
+        "descripcion":"ALCANC\u00cdA CANDADO"
+    },
+    "at0008":{
+        "descripcion":"ALCANC\u00cdA ELEFANTE"
+    },
+    "at0010":{
+        "descripcion":"ALCANC\u00cdA PATO"
+    },
+    "at0011":{
+        "descripcion":"ALCANC\u00cdA GALLINA"
+    },
+    "pf4130-1":{
+        "descripcion":"SILLA VASENILLA NI\u00d1O"
+    },
+    "pf4130-2":{
+        "descripcion":"SILLA VASENILLA NI\u00d1A"
+    },
+    "pf3955-1":{
+        "descripcion":"JUEGO DE BALONCESTO NI\u00d1O"
+    },
+    "pf3955-2":{
+        "descripcion":"JUEGO DE BALONCESTO NI\u00d1A"
+    },
+    "pf4518":{
+        "descripcion":"VASO FIESTA 18 ONZAS x 24 UNDS"
+    },
+    "pf4508":{
+        "descripcion":"ELEFANTE REGADERA"
+    },
+    "pf831":{
+        "descripcion":"CARRITO CON MERCADO"
+    },
+    "pf850b":{
+        "descripcion":"CUNA PRINCESA EN BOLSA"
+    },
+    "pf4120-2":{
+        "descripcion":"KIT CORRAL NI\u00d1A"
+    },
+    "pf4120-1":{
+        "descripcion":"KIT CORRAL NI\u00d1O"
+    },
+    "pf4115-2":{
+        "descripcion":"CORRAL MULTIUSOS NI\u00d1A"
+    },
+    "pf4115-1":{
+        "descripcion":"CORRAL MULTIUSOS NI\u00d1O"
+    },
+    "pf893-2":{
+        "descripcion":"BUTACO BLOQUES NI\u00d1A X 68 PCE"
+    },
+    "pf893-1":{
+        "descripcion":"BUTACO BLOQUES NI\u00d1O X 68 PCE"
+    },
+    "pf970-2":{
+        "descripcion":"MI MULITA NI\u00d1A"
+    },
+    "pf970-1":{
+        "descripcion":"MI MULITA NI\u00d1O"
+    },
+    "pf955-1":{
+        "descripcion":"CAMPER NI\u00d1O"
+    },
+    "pf955-2":{
+        "descripcion":"CAMPER NI\u00d1A"
+    },
+    "pf120":{
+        "descripcion":"SET CBT X 4"
+    },
+    "pf114":{
+        "descripcion":"VOLQUETA RETRO CBT"
+    },
+    "pf118":{
+        "descripcion":"MEZCLADOR RETRO CBT"
+    },
+    "pf116":{
+        "descripcion":"MEZCLADOR CBT"
+    },
+    "pf112":{
+        "descripcion":"VOLQUETA CBT"
+    },
+    "pf966":{
+        "descripcion":"VOLQUETA ELITE ARENERA"
+    },
+    "pf4131-1":{
+        "descripcion":"VASENILLA DINO NI\u00d1O"
+    },
+    "pf4131-2":{
+        "descripcion":"VASENILLA DINO NI\u00d1A"
+    },
+    "pf122":{
+        "descripcion":"CBT FACTORY SOBRE RUEDAS"
+    },
+    "pf121":{
+        "descripcion":"MIX RETRO CBT CAJA"
+    },
+    "pf152":{
+        "descripcion":"ESTACION DINO PARK SOBRE RUEDAS"
+    },
+    "pf153":{
+        "descripcion":"ESTACION CITY PEQUE\u00d1OS GIGANTES SOBRE RUEDAS"
+    },
+    "pf826":{
+        "descripcion":"COCINEMOS"
+    },
+    "pf101pg":{
+        "descripcion":"VOLQUETA 101 PEQUE\u00d1OS GIGANTES"
+    },
+    "pf156":{
+        "descripcion":"PEQUE\u00d1O GIGANTE SORPRESA"
+    },
+    "pf726":{
+        "descripcion":"CBT COMBO"
+    },
+    "pf4140-2":{
+        "descripcion":"BA\u00d1ERA DINO NI\u00d1A"
+    },
+    "pf4140-1":{
+        "descripcion":"BA\u00d1ERA DINO NI\u00d1O"
+    },
+    "pf961":{
+        "descripcion":"BOY TOYS TRUCK PALA Y RASTRILLO"
+    },
+    "pf3043":{
+        "descripcion":"BOY TOYS ALLOSAURUS"
+    },
+    "pf3040":{
+        "descripcion":"BOY TOYS TRICERATOPS"
+    },
+    "pf3041":{
+        "descripcion":"BOY TOYS VELOCIRAPTOR"
+    },
+    "pf3042":{
+        "descripcion":"BOY TOYS TYRANNOSAURUS"
+    },
+    "pf552":{
+        "descripcion":"CLASSIC FIRE TRUCK"
+    },
+    "pf642":{
+        "descripcion":"BOMBERITOYS"
+    },
+    "pf723":{
+        "descripcion":"MINI MULA NI\u00d1ERA CBT"
+    },
+    "pf894-1":{
+        "descripcion":"MEGA BLOCK LOCOMOTORA NI\u00d1O"
+    },
+    "pf894-2":{
+        "descripcion":"MEGA BLOCK LOCOMOTORA NI\u00d1A"
     }
 }
