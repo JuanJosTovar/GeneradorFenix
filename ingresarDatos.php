@@ -21,7 +21,7 @@
                     <input class="input-form" type="text" id="id_canasta" name="id_canasta" placeholder="Ejemplo: B3-M1-CA-F1-P4" required>
                 </div>
                 <div>
-                    <p for="referencai">Referencia</p>
+                    <p for="referencia">Referencia</p>
                     <input class="input-form" type="text" id="referencia" name="referencia" placeholder="Ejemplo: pf344" required>
                 </div>
                 <div>
@@ -37,25 +37,19 @@
             </form>
         </section>
 
-        <div class="instructions-part">
-            <h1>Instrucciones de Ingreso</h1>
-            <p>1. Ingresa el id de la canasta con el debido patron indicado en la que sera guardada la nueva referencia Ej: B3-M1-CA-F1-P4 (sin espacios y con mayúsculas)
-            <br>
-            <strong class="subtitulo">ADVERTENCIA</strong>
-            <br>
-            En caso de tener que agregar una nueva canasta, avisar al desarrollador previamente</p>
-            <p>2. Ingresa la referencia que vas a guardar en la canasta Ej: pf385 (sin espacios y sin mayúsculas)</p>
-            <p>3. Ingresa la cantidad/stock de la referencia que ingresaste previamente Ej: 166 (sin espacios y este campo solo admite numeros enteros)</p>
-            <p>4. Ingresa el color de la referencia si este es necesario Ej: Azul (sin espacios y sin mayúsculas) recuerda que este campo es opcional</p>
-            <br></br>
-            <h1>Notas Importantes</h1>
-            <ul class="notas">
-                <li>Al ingresar y guardar un id de canasta que no existe esto genera automaticamente una nueva canasta, lo cual puede generar errores en el mapeado para los pedidos, por lo tanto se le pide informar al desarrollador previamente</li>
-                <li>Al ingresar y guardar un id de canasta y una referencia existente con un color diferente a uno previamente guardado, se creara un objeto diferente y no actualizara el anterior ya que su color es distinto</li>
-                <li>Al ingersar y guardar un id de canasta, referencia y color existente con una cantidad diferente a una previamente guardada, se actualizara la cantidad de este objeto sumando la cantidad previa con la recien ingresada</li>
-            </ul>
-        </div>
+        <section>
+        <form id="formulario_excel" method="POST" action="procesar_excel.php" enctype="multipart/form-data">
+            <h2 class="tittle">Subir archivo Excel</h2>
+            <div class="file-upload">
+                <input type="file" id="archivo_excel" name="archivo_excel" accept=".xlsx, .xls" required>
+                <label for="archivo_excel" class="custom-file-button">Seleccionar Archivo</label>
+                <span id="file-name">Ningún archivo seleccionado</span>
+            </div>
+            <button type="submit" class="subir-archivo">Subir y Procesar</button>
+        </form>
+        </section>
     </section>
+
     
     <script src="./JavaScript/app.js"></script>
 </body>

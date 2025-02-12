@@ -44,13 +44,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['archivo_excel'])) {
                 ]
             ];
         } else {
-            // Si ya existe, agregar la referencia
-            $jsonData["canastas"][$canastaIndex]["referencias"][] = [
-                "ref" => $referencia,
-                "cantidad" => $cantidad,
-                "color" => $color
-            ];
-        }
+            $referencias = &$jsonData["canastas"][$canastaIndex]["referencias"];
+        
+            // Buscar si la referencia con el color ya existe
+            $indexReferencia = array_search($referencia, array_column($referencias, 'ref'));
+            
+            if ($indexReferencia !== false && $referencias[$indexReferencia]['color'] === $color) {
+                // Si ya existe, actualizar la cantidad sumándola
+                $referencias[$indexReferencia]["cantidad"] += $cantidad;
+            } else {
+                // Si no existe, agregarla
+                $referencias[] = [
+                    "ref" => $referencia,
+                    "cantidad" => $cantidad,
+                    "color" => $color
+                ];
+            }
+        
+        }        
     }
 
     // Guardar el JSON actualizado
