@@ -1,43 +1,39 @@
 {
-    "canastas": [
+    "B3-M1-CB-F1-P4": [
         {
             "codigo": "401",
             "nombre": "CONTENEDOR # 01",
-            "ubicacion": "B3-M1-CB-F1-P4",
             "referencias": [
                 {
                     "ref": "pf543",
-                    "cantidad": 60,
+                    "cantidad": 120,
                     "color": "Verde"
                 }
             ]
-        },
+        }
+    ],
+    "B3-M1-CD-F3-P4": [
         {
             "codigo": "402",
-            "nombre": "CONTENEDOR # 02",
-            "ubicacion": "B3-M1-CD-F3-P4",
+            "nombre": "CONTENEDOR # 01",
             "referencias": [
                 {
                     "ref": "pf555",
-                    "cantidad": 60,
+                    "cantidad": 120,
                     "color": "Verde"
                 }
             ]
-        },
+        }
+    ],
+    "B3-M1-CA-F1-P4": [
         {
             "codigo": "403",
-            "nombre": "CONTENEDOR # 03",
-            "ubicacion": "B3-M1-CA-F1-P4",
+            "nombre": "CONTENEDOR # 01",
             "referencias": [
                 {
                     "ref": "pf543",
-                    "cantidad": 60,
+                    "cantidad": 120,
                     "color": "Verde"
-                },
-                {
-                    "ref": "pf543",
-                    "cantidad": 31,
-                    "color": "Naranja"
                 }
             ]
         }
