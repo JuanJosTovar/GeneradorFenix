@@ -6,66 +6,92 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['archivo_excel'])) {
     $archivo = $_FILES['archivo_excel']['tmp_name'];
 
-    if (!$archivo) {
-        die("No se subió ningún archivo.");
+    if (!$archivo || $_FILES['archivo_excel']['error'] !== UPLOAD_ERR_OK) {
+        die("Error al subir el archivo.");
     }
 
-    // Cargar el Excel
-    $spreadsheet = IOFactory::load($archivo);
-    $hoja = $spreadsheet->getActiveSheet();
-    $datosExcel = $hoja->toArray(null, true, true, true);
+    try {
+        // Cargar el archivo Excel
+        $spreadsheet = IOFactory::load($archivo);
+        $hoja = $spreadsheet->getActiveSheet();
+        $datosExcel = $hoja->toArray(null, true, true, true);
+    } catch (Exception $e) {
+        die("Error al procesar el archivo Excel: " . $e->getMessage());
+    }
 
     // Leer el JSON existente
     $jsonFile = 'listado.json';
-    $jsonData = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : ["canastas" => []];
+    $jsonData = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
 
     // Procesar los datos del Excel
     foreach ($datosExcel as $index => $fila) {
-        if ($index == 1) continue; // Saltar encabezados
+        if ($index === 0) continue; // Saltar encabezados
 
-        $codigo = trim($fila['A']);
-        $nombre = trim($fila['B']);
-        $ubicacion = trim($fila['C']);
-        $referencia = trim($fila['D']);
-        $cantidad = intval($fila['E']);
-        $color = trim($fila['F']);
+        $codigo = trim($fila['A'] ?? "");
+        $nombre = trim($fila['B'] ?? "");
+        $ubicacion = trim($fila['C'] ?? "");
+        $referencia = trim($fila['D'] ?? "");
+        $cantidad = intval($fila['E'] ?? 0);
+        $color = trim($fila['F'] ?? "");
 
-        // Buscar si ya existe la canasta en el JSON
-        $canastaIndex = array_search($codigo, array_column($jsonData["canastas"], "codigo"));
+        // **Evitar registros vacíos**
+        if (empty($codigo) || empty($nombre) || empty($ubicacion) || empty($referencia) || $cantidad <= 0) {
+            continue;
+        }
+
+        // Inicializar ubicación si no existe
+        if (!isset($jsonData[$ubicacion])) {
+            $jsonData[$ubicacion] = [];
+        }
+
+        // Buscar si la canasta ya existe en la ubicación
+        $canastaIndex = array_search($codigo, array_column($jsonData[$ubicacion], "codigo"));
 
         if ($canastaIndex === false) {
-            // Si no existe, agregarla
-            $jsonData["canastas"][] = [
+            // Si no existe la canasta, agregarla con la referencia
+            $jsonData[$ubicacion][] = [
                 "codigo" => $codigo,
                 "nombre" => $nombre,
-                "ubicacion" => $ubicacion,
                 "referencias" => [
-                    ["ref" => $referencia, "cantidad" => $cantidad, "color" => $color]
+                    [
+                        "ref" => $referencia,
+                        "cantidad" => $cantidad,
+                        "color" => $color
+                    ]
                 ]
             ];
         } else {
-            $referencias = &$jsonData["canastas"][$canastaIndex]["referencias"];
-        
-            // Buscar si la referencia con el color ya existe
-            $indexReferencia = array_search($referencia, array_column($referencias, 'ref'));
+            // Si la canasta ya existe, actualizar o agregar la referencia
+            $referencias = &$jsonData[$ubicacion][$canastaIndex]["referencias"];
             
-            if ($indexReferencia !== false && $referencias[$indexReferencia]['color'] === $color) {
-                // Si ya existe, actualizar la cantidad sumándola
+            // Buscar si la referencia ya existe con el mismo color
+            $indexReferencia = false;
+            foreach ($referencias as $key => $refItem) {
+                if ($refItem['ref'] === $referencia && $refItem['color'] === $color) {
+                    $indexReferencia = $key;
+                    break;
+                }
+            }
+
+            if ($indexReferencia !== false) {
+                // Si ya existe, sumar la cantidad
                 $referencias[$indexReferencia]["cantidad"] += $cantidad;
             } else {
-                // Si no existe, agregarla
+                // Si no existe, agregar la nueva referencia
                 $referencias[] = [
                     "ref" => $referencia,
                     "cantidad" => $cantidad,
                     "color" => $color
                 ];
             }
-        
-        }        
+        }
     }
 
     // Guardar el JSON actualizado
     file_put_contents($jsonFile, json_encode($jsonData, JSON_PRETTY_PRINT));
 
-    echo "Archivo procesado y datos actualizados en JSON.";
+    // Redirigir sin que haya problemas de salida de datos
+    header('Location: ingresarDatos.php');
+    exit();
 }
+?>
