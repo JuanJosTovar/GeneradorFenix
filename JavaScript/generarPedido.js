@@ -1,4 +1,4 @@
-let juguetesData = {}; // Variable para los datos JSON cargados
+let juguetesData = {}; // Aquí se almacenará el JSON transformado (propiedad "canastas" será un arreglo)
 let selectedCells = new Set();
 let referenceDetails = new Map(); // Mapa para almacenar los detalles de las referencias
 
@@ -17,55 +17,78 @@ document.getElementById('toggleTheme').onclick = function () {
 // Función para buscar coincidencias y resaltar celdas basadas en la referencia ingresada
 function highlightAndFindReference() {
     const searchValue = document.getElementById('search').value.trim().toLowerCase();
-    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4');
-
-    if (!juguetesData.canastas) return;
-
-    // Convertir el objeto de canastas en un array para filtrarlo
-    const foundCanastas = Object.values(juguetesData.canastas).filter(canasta =>
-        canasta.referencias.some(ref => ref.referencia.toLowerCase() === searchValue)
-    );
-
+    
     // Limpiar selección anterior
+    const allCells = document.querySelectorAll('.cell4, .cell3, .cell2, .cell');
     allCells.forEach(cell => {
-        cell.classList.remove('selected', 'deselected');
+        cell.classList.remove('selected', 'deselected', 'highlight');
         cell.onmouseover = null;
         cell.onmouseout = null;
     });
     selectedCells.clear();
 
-    if (foundCanastas.length > 0) {
-        foundCanastas.forEach(canasta => {
-            const cell = document.getElementById(canasta.id);
-            if (cell) {
-                cell.classList.add('selected');
-                selectedCells.add(canasta.id);
-                
-                cell.onmouseover = function(event) {
-                    const detalles = getDetalles(canasta, searchValue);
-                    showInfoBox(event, detalles);
-                };
-                cell.onmouseout = function() {
-                    hideInfoBox();
-                };
-                cell.onclick = function() {
-                    toggleSelection(cell);
-                };
-            }
-        });
-    console.log("Datos ingresados: ", searchValue);
-    
-    if (!juguetesData.canastas) return;
+    if (!juguetesData || !juguetesData.canastas) return;
 
     const references = searchValue.split(',').map(ref => ref.trim()).filter(ref => ref.length > 0);
-    console.log('📌 Referencias a buscar:', references);
-    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4');
 
-    if (searchValue.length > 0) {
-        allCells.forEach(cell => cell.classList.remove('selected', 'deselected'));
-        selectedCells.clear();
-    }
+    // Crear un objeto para almacenar las canastas encontradas por prioridad
+    const foundCanastas = {
+        cell4: [],
+        cell3: [],
+        cell2: [],
+        cell: []
+    };
 
+    // Iterar sobre el arreglo de canastas y clasificar las coincidencias
+    juguetesData.canastas.forEach(canasta => {
+        references.forEach(ref => {
+            const hasMatch = canasta.referencias.some(reference => reference.ref.toLowerCase() === ref);
+            if (hasMatch) {
+                // Obtener el elemento del DOM correspondiente a la canasta
+                const cell = document.getElementById(canasta.ubicacion);
+                if (cell) {
+                    // Clasificar según la clase del elemento
+                    if (cell.classList.contains('cell4')) foundCanastas.cell4.push(canasta);
+                    else if (cell.classList.contains('cell3')) foundCanastas.cell3.push(canasta);
+                    else if (cell.classList.contains('cell2')) foundCanastas.cell2.push(canasta);
+                    else if (cell.classList.contains('cell')) foundCanastas.cell.push(canasta);
+                }
+            }
+        });
+    });
+
+    // Resaltar canastas según la prioridad
+    const priorityOrder = ['cell4', 'cell3', 'cell2', 'cell'];
+    references.forEach(ref => {
+        let found = false; // Para verificar si ya se encontró la referencia en una clase de mayor prioridad
+        priorityOrder.forEach(className => {
+            const canastaFound = foundCanastas[className].find(canasta => 
+                canasta.referencias.some(reference => reference.ref.toLowerCase() === ref)
+            );
+            if (canastaFound && !found) {
+                const cell = document.getElementById(canastaFound.ubicacion);
+                if (cell) {
+                    cell.classList.add('selected');
+                    selectedCells.add(canastaFound.ubicacion);
+                    found = true; // Marcar que ya se encontró la referencia en una clase de mayor prioridad
+
+                    // Configurar eventos de mouse
+                    cell.onmouseover = function(event) {
+                        const detalles = getDetalles(canastaFound, references);
+                        showInfoBox(event, detalles);
+                    };
+                    cell.onmouseout = function() {
+                        hideInfoBox();
+                    };
+                    cell.onclick = function() {
+                        toggleSelection(cell);
+                    };
+                }
+            }
+        });
+    });
+
+    // Recorremos nuevamente todas las canastas para asegurarnos de marcar todas las coincidencias
     juguetesData.canastas.forEach(canasta => {
         const hasMatch = canasta.referencias.some(ref => references.includes(ref.ref.toLowerCase()));
         canasta.referencias.forEach(ref => {
@@ -87,10 +110,8 @@ function highlightAndFindReference() {
     updateSelectedBasketList();
 }
 
-
 function toggleSelection(cell) {
     const cellId = cell.id;
-
     if (selectedCells.has(cellId)) {
         selectedCells.delete(cellId);
         cell.classList.remove('selected');
@@ -106,7 +127,7 @@ function toggleSelection(cell) {
 function getDetalles(canasta, references) {
     return canasta.referencias
         .filter(ref => references.includes(ref.ref.toLowerCase()))
-        .map(ref => `Referencia: ${ref.ref}\nColor: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}`)
+        .map(ref => `Codigo :${canasta.codigo}  ${canasta.nombre}\nReferencia: ${ref.ref}\nColor: ${ref.color || 'N/A'}\nCantidad: ${ref.cantidad}`)
         .join("\n\n");
 }
 
@@ -128,8 +149,10 @@ function updateFloatingDiv(references) {
     floatingDiv.innerHTML = '';
     referenceDetails.clear();
 
+    // Nota: selectedCells almacena los IDs (ubicaciones) de las celdas seleccionadas
     selectedCells.forEach(cellId => {
-        const canasta = juguetesData.canastas.find(c => c.codigo === cellId);
+        // Buscamos la canasta usando la propiedad "ubicacion"
+        const canasta = juguetesData.canastas.find(c => c.ubicacion === cellId);
         if (canasta) {
             canasta.referencias
                 .filter(ref => references.includes(ref.ref.toLowerCase()))
@@ -149,13 +172,30 @@ function updateFloatingDiv(references) {
             const [reference, colorValue] = key.split('-');
             const refDiv = document.createElement('div');
             refDiv.textContent = `Referencia: ${reference}\nCantidad: ${cantidad}\nColor: ${colorValue}`;
+            refDiv.style.cursor = 'pointer';
+            refDiv.onclick = function() {
+                highlightCanastas(reference); // Resaltar canastas al hacer clic
+            };
             floatingDiv.appendChild(refDiv);
         });
+        floatingDiv.style.display = 'block'; // Mostrar el div flotante
     } else {
         floatingDiv.textContent = 'No se encontraron referencias coincidentes.';
+        floatingDiv.style.display = 'block'; // Asegurarse de que se muestre incluso si no hay coincidencias
     }
 }
 
+function highlightCanastas(reference) {
+    const allCells = document.querySelectorAll('.cell, .cell2, .cell3, .cell4');
+    allCells.forEach(cell => {
+        // Comprobar que el ID de la celda coincide con la referencia
+        if (cell.id === reference) {
+            cell.classList.toggle('highlight'); // Añadir o quitar la clase de resaltado
+        } else {
+            cell.classList.remove('highlight'); // Asegurarse de que otras celdas no estén resaltadas
+        }
+    });
+}
 
 function updateSelectedBasketList() {
     const selectedBasketList = document.getElementById('selectedBasketList');
@@ -192,7 +232,6 @@ function updateSelectedBasketList() {
     }
 }
 
-
 // Función para exportar datos a Excel
 function exportToExcel() {
     const selectedData = [];
@@ -213,7 +252,7 @@ function exportToExcel() {
                         Color: ref.color || 'N/A'
                     });
 
-                    // Restar la cantidad en juguetesData (siempre asegurando que no sea menor a 0)
+                    // Restar la cantidad en juguetesData (asegurando que no baje de 0)
                     ref.cantidad = Math.max(0, ref.cantidad - 1);
                 });
         }
@@ -233,7 +272,6 @@ function exportToExcel() {
 
     enviarPedido(selectedData);
 }
-
 
 function enviarPedido(data) {
     const jsonFinal = { canastas: convertirFormato(data) };
@@ -256,7 +294,7 @@ function enviarPedido(data) {
     });
 }
 
-// Convertir el formato para que coincida con el JSON del PHP
+// Convertir el formato para que coincida con el JSON que espera el PHP
 function convertirFormato(data) {
     let resultado = [];
 
@@ -293,8 +331,7 @@ function convertirFormato(data) {
     return resultado;
 }
 
-
-// Cargar datos del archivo JSON
+// Cargar datos del archivo JSON y transformarlos a la estructura interna esperada
 function loadJuguetesData() {
     fetch('../listado.json')
         .then(response => {
@@ -302,7 +339,16 @@ function loadJuguetesData() {
             return response.json();
         })
         .then(data => {
-            juguetesData = data;
+            // Transformar el nuevo JSON (clave = ubicación, valor = arreglo de canastas)
+            // a un arreglo de canastas agregando la propiedad "ubicacion"
+            let canastas = [];
+            Object.entries(data).forEach(([ubicacion, lista]) => {
+                lista.forEach(item => {
+                    item.ubicacion = ubicacion; // Agregamos la ubicación a cada objeto
+                    canastas.push(item);
+                });
+            });
+            juguetesData.canastas = canastas;
             console.log('Datos cargados:', juguetesData);
         })
         .catch(error => console.error('Error al cargar el archivo JSON:', error));
@@ -316,8 +362,6 @@ function toggleFloatingDiv() {
 // Inicializar funciones al cargar la página
 window.onload = function () {
     loadJuguetesData();
-};
-
     document.getElementById('exportButton').onclick = exportToExcel;
     document.getElementById('search').addEventListener('input', highlightAndFindReference);
     document.getElementById('toggleFloatingDiv').onclick = toggleFloatingDiv;
